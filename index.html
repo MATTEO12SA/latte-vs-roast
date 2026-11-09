@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr" data-theme="coffee">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#26170f" />
+    <meta name="description" content="Crème contre Café. Deux billes, onze pouvoirs, un territoire à conquérir. Une simulation à regarder, personnaliser et partager." />
+    <title>Latte vs Roast — le duel infusé</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect rx='18' width='64' height='64' fill='%23512b10'/%3E%3Cpath d='M12 16h20v32H12z' fill='%23f5ebcb'/%3E%3Ccircle cx='22' cy='34' r='5' fill='%23251a0d'/%3E%3Ccircle cx='44' cy='27' r='5' fill='%23edcf76'/%3E%3C/svg%3E" />
+  </head>
+  <body>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7Z"/></symbol>
+      <symbol id="i-restart" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 2 9M3 4v6h6"/></symbol>
+      <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 6h3c5 0 7 12 12 12h3M3 18h3c2 0 3-2 4-4m4-4c1-2 2-4 4-4h3m-4-3 4 3-4 3m0 6 4 3-4 3"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+      <symbol id="i-sound" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5ZM16 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+      <symbol id="i-mute" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5ZM16 9l6 6m0-6-6 6"/></symbol>
+      <symbol id="i-share" viewBox="0 0 24 24"><path d="M10 13 21 2m-7 0h7v7M8 3H3v18h18v-5"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v14H3Z"/><circle cx="12" cy="13" r="4"/></symbol>
+      <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h7m4 0h5M4 17h3m4 0h9"/><circle cx="13" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 16l4-7 5 4 5-8"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 20c-5 2-5-3-7-3m14 5v-4c0-1-.3-2-1-2.5 4-.5 7-2 7-6a5 5 0 0 0-1.5-3.5A5 5 0 0 0 20 2s-1.5-.5-4 1a13 13 0 0 0-8 0C5.5 1.5 4 2 4 2a5 5 0 0 0-.5 4A5 5 0 0 0 2 9.5c0 4 3 5.5 7 6C8.3 16 8 17 8 18v4"/></symbol>
+    </svg>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Latte vs Roast, accueil"><span class="brand-mark"><i></i><b></b></span><span>latte <em>vs</em> roast<span class="brand-sub">LE DUEL INFUSÉ</span></span></a>
+      <div class="header-end"><span class="edition">UNE EXPÉRIENCE AUTONOME</span><a class="icon-button source-link" href="https://github.com/MATTEO12SA/latte-vs-roast" target="_blank" rel="noopener noreferrer" aria-label="Voir le code sur GitHub"><svg><use href="#i-github"/></svg></a></div>
+    </header>
+    <main>
+      <section class="game-shell" id="game-shell" aria-label="Simulation de conquête de territoire">
+        <div class="match-top"><span class="status"><i id="status-dot"></i><span id="status-text">La bataille infuse</span></span><span class="match-clock"><span id="profile-label">FIDÈLE</span><time id="clock">0:00</time></span></div>
+        <div class="active-effects" id="active-effects" aria-label="Bonus actifs"><span class="calm-label">Deux nuances. Un seul territoire.</span></div>
+        <div class="board-wrap" id="board-wrap">
+          <canvas id="game" aria-label="Terrain de la bataille, Crème à gauche et Café à droite">Le jeu nécessite un navigateur compatible avec Canvas 2D.</canvas>
+          <div id="pause-overlay" class="pause-overlay" hidden><span>On laisse reposer.</span><button class="button primary" id="resume-button">Reprendre la partie</button></div>
+          <div id="victory-overlay" class="victory-overlay" hidden><div class="victory-card"><span class="crown" aria-hidden="true">♛</span><p class="eyebrow">FIN DE L’INFUSION</p><h1 id="winner-title">Café domine !</h1><p id="winner-detail"></p><button class="button primary" id="victory-new">Une nouvelle bataille <span aria-hidden="true">↗</span></button><button class="button text-button" id="victory-replay">Rejouer cette partie</button></div></div>
+        </div>
+        <div class="scoreboard" aria-label="Répartition du territoire">
+          <div class="score-row"><span class="team-label"><i class="ball-dot latte-dot"></i>Crème</span><div class="score-track"><div id="latte-bar" class="score-fill latte-fill"></div><i class="win-marker"></i></div><span class="score-value" id="latte-percent">50 %</span></div>
+          <div class="score-row"><span class="team-label"><i class="ball-dot roast-dot"></i>Café</span><div class="score-track"><div id="roast-bar" class="score-fill roast-fill"></div><i class="win-marker"></i></div><span class="score-value" id="roast-percent">50 %</span></div>
+        </div>
+        <div class="transport" aria-label="Commandes de la partie">
+          <button id="pause-button" class="button pause-button" aria-label="Mettre en pause"><svg><use href="#i-pause"/></svg><span>Pause</span></button>
+          <div class="speed-control"><label class="sr-only" for="speed">Vitesse de lecture</label><select id="speed"><option value="0.5">×0,5</option><option value="1" selected>×1</option><option value="2">×2</option><option value="4">×4</option></select></div>
+          <span class="toolbar-divider"></span>
+          <button id="restart-button" class="icon-button" aria-label="Rejouer la même partie" title="Rejouer la même partie"><svg><use href="#i-restart"/></svg></button>
+          <button id="new-button" class="icon-button" aria-label="Nouvelle partie" title="Nouvelle partie"><svg><use href="#i-shuffle"/></svg></button>
+          <span class="toolbar-space"></span>
+          <button id="sound-button" class="icon-button" aria-label="Activer le son" aria-pressed="false" title="Activer le son"><svg><use href="#i-mute"/></svg></button>
+          <button id="fullscreen-button" class="icon-button" aria-label="Plein écran" title="Plein écran"><svg><use href="#i-expand"/></svg></button>
+        </div>
+        <div class="match-foot"><span id="seed-label" title="Identifiant reproductible de la partie">GRAINE —</span><div><button id="share-button" class="quiet-button"><svg><use href="#i-share"/></svg>Partager</button><button id="capture-button" class="quiet-button"><svg><use href="#i-camera"/></svg>Capture</button></div></div>
+      </section>
+      <section class="workbench" aria-label="Explorer et personnaliser le jeu">
+        <div class="panel-tabs"><button class="tab-button" data-panel="settings" aria-expanded="false" aria-controls="settings-panel"><svg><use href="#i-sliders"/></svg>Réglages<span>+</span></button><button class="tab-button" data-panel="bonuses" aria-expanded="false" aria-controls="bonuses-panel"><svg><use href="#i-spark"/></svg>Les bonus<span>+</span></button><button class="tab-button" data-panel="stats" aria-expanded="false" aria-controls="stats-panel"><svg><use href="#i-chart"/></svg>Statistiques<span>+</span></button></div>
+        <section class="panel" id="settings-panel" hidden aria-labelledby="settings-title">
+          <div class="panel-heading"><p class="eyebrow">À VOTRE GOÛT</p><h2 id="settings-title">La recette de la partie</h2><p>Les règles s’appliquent à la prochaine bataille. Le style et le son changent tout de suite.</p></div>
+          <form id="settings-form">
+            <fieldset class="profile-choices"><legend>Mode de jeu</legend><label class="choice-card"><input type="radio" name="profile" value="faithful" checked><span><strong>Fidèle</strong><small>La recette d’origine · 18 × 24</small></span></label><label class="choice-card"><input type="radio" name="profile" value="custom"><span><strong>Personnalisé</strong><small>Votre terrain, vos règles</small></span></label></fieldset>
+            <fieldset id="custom-fields" disabled><legend class="sr-only">Paramètres personnalisés</legend><div class="settings-grid"><label>Colonnes<input id="columns" name="columns" type="number" min="12" max="30" step="2" value="18"></label><label>Lignes<input id="rows" name="rows" type="number" min="16" max="40" value="24"></label><label>Vitesse des billes <span>cases/s</span><input id="base-speed" type="number" min="4" max="12" step="0.5" value="8"></label><label>Territoire pour gagner <span>%</span><input id="win-threshold" type="number" min="70" max="100" value="90"></label><label class="wide-field">Un bonus toutes les <span>secondes</span><input id="spawn-seconds" type="number" min="1" max="10" step="0.5" value="3"></label></div><p class="field-title">Bonus disponibles</p><div id="bonus-toggles" class="bonus-toggles"></div></fieldset>
+            <div class="appearance-settings"><label>Ambiance<select id="theme-select"><option value="coffee">Café d’origine</option><option value="night">Après minuit</option><option value="contrast">Contraste renforcé</option></select></label><label>Volume <span id="volume-value">30 %</span><input id="volume" type="range" min="0" max="100" value="30"></label><label class="toggle-row"><input id="reduced-effects" type="checkbox"><span>Réduire les effets visuels<small>Moins de particules et de traînées.</small></span></label></div>
+            <div class="form-actions"><button type="submit" class="button primary">Lancer avec ces réglages <span aria-hidden="true">↗</span></button><button type="button" class="quiet-button" id="reset-settings">Réinitialiser les préférences</button></div>
+          </form>
+        </section>
+        <section class="panel" id="bonuses-panel" hidden aria-labelledby="bonuses-title"><div class="panel-heading"><p class="eyebrow">LES PETITS IMPRÉVUS</p><h2 id="bonuses-title">Onze façons de tout renverser.</h2><p>Les billes récupèrent les carrés corail. Chaque pouvoir profite à leur camp et peut changer le cours de la bataille.</p></div><div id="bonus-guide" class="bonus-guide"></div><p class="reference-note">Une reconstruction d’après vidéo. Les effets peu visibles ont des règles documentées dans le dépôt.</p></section>
+        <section class="panel" id="stats-panel" hidden aria-labelledby="stats-title"><div class="panel-heading"><p class="eyebrow">LE CARNET DES BATAILLES</p><h2 id="stats-title">Chaque partie laisse une trace.</h2><p>Vos résultats restent dans ce navigateur, sans compte.</p></div><div id="stats-summary" class="stats-summary"></div><div class="chart-heading"><h3>Évolution du dernier duel terminé</h3><span>Part du territoire Crème</span></div><svg id="history-chart" viewBox="0 0 600 160" role="img" aria-label="Courbe du territoire Crème de la dernière partie"></svg><div id="match-history" class="match-history"></div></section>
+      </section>
+      <p class="about-line">Deux billes qui rebondissent. Des frontières qui changent.<br>Le premier camp à <strong id="target-label">90 %</strong> remporte le duel.</p>
+    </main>
+    <footer class="site-footer"><span>Fait pour regarder le temps passer.</span><span>LATTE VS ROAST <b>v1.1</b></span></footer>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <dialog id="share-dialog"><form method="dialog"><button class="dialog-close icon-button" aria-label="Fermer">×</button></form><p class="eyebrow">UNE PARTIE À TRANSMETTRE</p><h2>Le même duel, ailleurs.</h2><p>Ce lien relance la partie depuis le début avec les mêmes règles et la même graine.</p><label for="share-url">Lien de la partie</label><input id="share-url" type="text" readonly><button id="copy-link" class="button primary">Copier le lien</button><p id="copy-status" role="status"></p></dialog>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
