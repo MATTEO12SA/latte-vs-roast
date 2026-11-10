@@ -1,5 +1,5 @@
 import type { BonusKind, MatchConfig, Preferences } from './types';
-export const RULES_VERSION = '1.0.0';
+export const RULES_VERSION = '1.0.1';
 export const TICK_RATE = 120;
 export const BASE_RADIUS = 0.37;
 export const MAX_BALLS = 7;
@@ -23,6 +23,6 @@ export function normalizeConfig(value: Partial<MatchConfig> = {}): MatchConfig {
   const columns = Math.round(number(value.columns, 18, 12, 30) / 2) * 2;
   return { columns, rows: Math.round(number(value.rows, 24, 16, 40)), baseSpeed: number(value.baseSpeed, 8, 4, 12), winThreshold: number(value.winThreshold, 0.9, 0.7, 1), spawnSeconds: number(value.spawnSeconds, 3, 1, 10), enabledBonuses: Array.isArray(value.enabledBonuses) ? BONUS_KINDS.filter(k => value.enabledBonuses!.includes(k)) : [...BONUS_KINDS] };
 }
-export const defaultPreferences = (): Preferences => ({ theme: 'coffee', sound: false, volume: 0.3, reducedEffects: typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches, profile: 'faithful', customConfig: normalizeConfig() });
+export const defaultPreferences = (): Preferences => ({ language: 'en', theme: 'coffee', sound: true, volume: 0.3, reducedEffects: typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches, profile: 'faithful', customConfig: normalizeConfig() });
 export function formatTime(ticks: number): string { const s = Math.floor(ticks / TICK_RATE); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }
 export const teamName = (team: 'latte' | 'roast') => team === 'latte' ? 'Crème' : 'Café';

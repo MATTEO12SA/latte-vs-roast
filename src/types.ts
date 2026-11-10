@@ -1,6 +1,7 @@
 export type Team = 'latte' | 'roast';
 export type BonusKind = 'ghost' | 'blackHole' | 'tidalWave' | 'speed' | 'nitro' | 'wreckingBall' | 'colossus' | 'infiltrator' | 'trinity' | 'wormhole' | 'turret';
 export type ThemeName = 'coffee' | 'night' | 'contrast';
+export type Language = 'en' | 'fr';
 export interface MatchConfig { columns: number; rows: number; baseSpeed: number; winThreshold: number; spawnSeconds: number; enabledBonuses: BonusKind[]; }
 export interface Ball { id: number; team: Team; x: number; y: number; vx: number; vy: number; radius: number; expiresAt: number | null; role: 'original' | 'trinity' | 'infiltrator'; holeCooldownUntil: number; }
 export interface Pickup { id: number; kind: BonusKind; x: number; y: number; expiresAt: number; }
@@ -18,4 +19,4 @@ export interface MatchState {
   nextSpawnAt: number; revision: number;
 }
 export interface MatchRecord { id: string; date: string; seed: number; config: MatchConfig; version: string; winner: Team; ticks: number; history: TerritorySample[]; }
-export interface Preferences { theme: ThemeName; sound: boolean; volume: number; reducedEffects: boolean; profile: 'faithful' | 'custom'; customConfig: MatchConfig; }
+export interface Preferences { language: Language; theme: ThemeName; sound: boolean; volume: number; reducedEffects: boolean; profile: 'faithful' | 'custom'; customConfig: MatchConfig; }

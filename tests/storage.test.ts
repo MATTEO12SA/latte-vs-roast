@@ -17,6 +17,26 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe('préférences et historique', () => {
+  it('démarre en anglais avec le son activé lorsque rien n’est enregistré', () => {
+    expect(loadPreferences()).toMatchObject({ language: 'en', sound: true, volume: 0.3 });
+  });
+
+  it('migre les anciennes préférences françaises sans langue vers anglais et son actif', () => {
+    data.set(preferenceKey, JSON.stringify({ theme: 'night', sound: false, volume: 0.6, profile: 'custom', customConfig: { ...DEFAULT_CONFIG, columns: 12, rows: 16 } }));
+    expect(loadPreferences()).toMatchObject({ language: 'en', sound: true, theme: 'night', volume: 0.6, profile: 'custom', customConfig: { columns: 12, rows: 16 } });
+  });
+
+  it.each(['en', 'fr'] as const)('respecte le silence choisi explicitement dans la nouvelle version (%s)', language => {
+    const preferences = { ...defaultPreferences(), language, sound: false };
+    expect(savePreferences(preferences)).toBe(true);
+    expect(loadPreferences()).toEqual(preferences);
+  });
+
+  it('remplace une langue inconnue et une valeur sonore invalide par les défauts sûrs', () => {
+    data.set(preferenceKey, JSON.stringify({ language: 'xx', sound: 'false' }));
+    expect(loadPreferences()).toMatchObject({ language: 'en', sound: true });
+  });
+
   it('revient aux valeurs sûres lorsque les préférences sont corrompues', () => {
     data.set(preferenceKey, '{incomplet'); expect(loadPreferences()).toEqual(defaultPreferences());
     data.set(preferenceKey, JSON.stringify({ theme: '<script>', volume: 50, customConfig: { columns: 1000 } }));
@@ -54,6 +74,14 @@ describe('préférences et historique', () => {
     const valid = record(1);
     data.set(historyKey, JSON.stringify([{ ...record(2), version: 'ancien' }, { ...record(3), ticks: -1 }, { ...valid, history: [...valid.history, { tick: 50, latte: 4 }] }]));
     const records = loadRecords(); expect(records).toHaveLength(1); expect(records[0].history).toEqual(valid.history);
+  });
+
+  it('garde les résultats de la première version même après évolution des règles', () => {
+    const legacy = { ...record(42), version: '1.0.0' };
+    data.set(historyKey, JSON.stringify([legacy, record(43)]));
+    const records = loadRecords();
+    expect(records).toHaveLength(2);
+    expect(records[0]).toMatchObject({ id: '42', seed: 42, version: '1.0.0', winner: 'roast' });
   });
 });
 

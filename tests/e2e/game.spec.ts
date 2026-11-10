@@ -8,10 +8,12 @@ const diagnostics = (page: Page): Promise<Diagnostics> => page.evaluate(() => (w
 const shareHash = (data: unknown) => `#partie=${Buffer.from(JSON.stringify(data)).toString('base64url')}`;
 const seededURL = (seed = 103, config = DEFAULT_CONFIG) => `./${shareHash({ v: RULES_VERSION, s: seed, c: config })}`;
 
-async function ready(page: Page, url = seededURL()): Promise<void> {
+async function ready(page: Page, url = seededURL(), language: 'en' | 'fr' = 'fr'): Promise<void> {
   await page.goto(url);
   await expect(page.locator('#game')).toBeVisible();
   await expect.poll(async () => (await diagnostics(page)).tick).toBeGreaterThan(0);
+  await page.locator('#language-select').selectOption(language);
+  await expect(page.locator('html')).toHaveAttribute('lang', language);
 }
 
 test('démarrage autonome, pause, reprise et raccourci clavier', async ({ page }) => {
@@ -19,7 +21,7 @@ test('démarrage autonome, pause, reprise et raccourci clavier', async ({ page }
   page.on('pageerror', error => errors.push(error.message));
   await ready(page);
   await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
-  await expect(page.getByRole('button', { name: 'Activer le son', exact: true })).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.getByRole('button', { name: 'Couper le son', exact: true })).toHaveAttribute('aria-pressed', 'true');
   const first = await diagnostics(page);
   expect(first.counts.latte + first.counts.roast).toBe(432);
   await page.getByRole('button', { name: 'Mettre en pause', exact: true }).click();
@@ -145,8 +147,11 @@ test('fonctionne lorsque le stockage local est refusé', async ({ page }) => {
     Object.defineProperty(Storage.prototype, 'getItem', { value: () => { throw new DOMException('Refusé', 'SecurityError'); } });
     Object.defineProperty(Storage.prototype, 'setItem', { value: () => { throw new DOMException('Refusé', 'SecurityError'); } });
   });
-  await ready(page, './');
-  await expect(page.locator('#toast')).toContainText('stockage local est indisponible');
+  await page.goto('./');
+  await expect.poll(async () => (await diagnostics(page)).tick).toBeGreaterThan(0);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('#toast')).toContainText(/storage.*unavailable|storage.*not available/i);
+  await page.locator('#language-select').selectOption('fr');
   await page.locator('[data-panel="settings"]').click();
   await page.locator('#theme-select').selectOption('contrast');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'contrast');
@@ -183,4 +188,147 @@ test('termine une vraie partie et enregistre le résultat une seule fois', async
   await page.locator('[data-panel="stats"]').click();
   await expect(page.locator('#match-history .history-row')).toHaveCount(1);
   await expect(page.locator('#history-chart polyline')).toHaveCount(1);
+  const finalTick = result.tick;
+  await page.locator('#language-select').selectOption('en');
+  await expect(page.locator('#winner-title')).toHaveText(/^(Latte|Roast) dominates!$/);
+  await expect(page.locator('#victory-overlay')).toBeVisible();
+  await expect(page.locator('#match-history')).not.toContainText('remporte le duel');
+  expect((await diagnostics(page)).tick).toBe(finalTick);
+  expect((await diagnostics(page)).historyLength).toBe(1);
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await page.locator('[data-panel="stats"]').click();
+  await expect(page.locator('#match-history .history-row')).toHaveCount(1);
+  await expect(page.locator('#history-chart polyline')).toHaveCount(1);
+});
+
+test('anglais et son actifs par défaut, avec un sélecteur visible en haut à droite', async ({ page }) => {
+  await page.goto(seededURL());
+  await expect.poll(async () => (await diagnostics(page)).tick).toBeGreaterThan(0);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('#language-select')).toHaveValue('en');
+  await expect(page.locator('#sound-button')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#sound-button')).toHaveAccessibleName(/mute|turn.*off/i);
+  const languageBox = await page.locator('#language-select').boundingBox();
+  expect(languageBox).not.toBeNull();
+  expect(languageBox!.x).toBeGreaterThan((page.viewportSize()?.width ?? 1280) / 2);
+  expect(languageBox!.y).toBeLessThan(100);
+  await page.locator('[data-panel="bonuses"]').click();
+  await expect(page.getByRole('heading', { name: 'Eclipse Ghost', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Black Hole', exact: true })).toBeVisible();
+  await expect(page.locator('#bonus-guide article')).toHaveCount(11);
+  await page.locator('#language-select').selectOption('fr');
+  await expect(page.getByRole('heading', { name: 'Fantôme d’éclipse', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Trou noir', exact: true })).toBeVisible();
+});
+
+test('changer de langue conserve la partie en pause et les réglages non appliqués', async ({ page }) => {
+  await ready(page, seededURL(303), 'en');
+  await page.locator('#pause-button').click();
+  const before = await diagnostics(page);
+  await page.locator('[data-panel="settings"]').click();
+  await page.locator('input[name="profile"][value="custom"]').check();
+  await page.locator('#columns').fill('12');
+  await page.locator('#rows').fill('16');
+  await page.locator('#base-speed').fill('10');
+  await page.locator('#bonus-nitro').uncheck();
+  await page.locator('#language-select').selectOption('fr');
+  await expect(page.locator('#settings-title')).toHaveText('La recette de la partie');
+  await expect(page.locator('#columns')).toHaveValue('12');
+  await expect(page.locator('#rows')).toHaveValue('16');
+  await expect(page.locator('#base-speed')).toHaveValue('10');
+  await expect(page.locator('#bonus-nitro')).not.toBeChecked();
+  await expect(page.locator('input[name="profile"][value="custom"]')).toBeChecked();
+  await expect(page.locator('#columns')).toBeEnabled();
+  await expect(page.locator('#pause-overlay')).toBeVisible();
+  const after = await diagnostics(page);
+  expect(after).toMatchObject({ seed: before.seed, tick: before.tick, counts: before.counts, config: before.config, paused: true });
+  await page.locator('#language-select').selectOption('en');
+  await expect(page.locator('#settings-title')).not.toHaveText('La recette de la partie');
+  await expect(page.locator('#columns')).toHaveValue('12');
+  await expect(page.locator('#bonus-nitro')).not.toBeChecked();
+});
+
+test('langue et silence choisis persistent, réinitialiser restaure anglais et son', async ({ page }) => {
+  await ready(page, seededURL(), 'en');
+  await page.locator('#language-select').selectOption('fr');
+  await page.locator('#sound-button').click();
+  await expect(page.locator('#sound-button')).toHaveAttribute('aria-pressed', 'false');
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
+  await expect(page.locator('#language-select')).toHaveValue('fr');
+  await expect(page.locator('#sound-button')).toHaveAttribute('aria-pressed', 'false');
+  await page.locator('[data-panel="settings"]').click();
+  await page.locator('#reset-settings').click();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('#language-select')).toHaveValue('en');
+  await expect(page.locator('#sound-button')).toHaveAttribute('aria-pressed', 'true');
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('#sound-button')).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('sélecteur anglais-français accessible sur 320 et 390 pixels, sans débordement', async ({ page }) => {
+  await ready(page, seededURL(), 'en');
+  for (const width of [320, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    for (const language of ['en', 'fr']) {
+      await page.locator('#language-select').selectOption(language);
+      await expect(page.locator('html')).toHaveAttribute('lang', language);
+      await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+      const box = await page.locator('#language-select').boundingBox();
+      expect(box).not.toBeNull();
+      expect(box!.x).toBeGreaterThan(width / 2);
+      expect(box!.x + box!.width).toBeLessThanOrEqual(width);
+      expect(box!.y).toBeLessThan(100);
+      expect(box!.height).toBeGreaterThanOrEqual(44);
+    }
+  }
+});
+
+test('les anciennes préférences adoptent anglais et son actif sans perdre le thème', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('latte-vs-roast.preferences.v1', JSON.stringify({ theme: 'night', sound: false, volume: 0.5, profile: 'faithful' })));
+  await page.goto(seededURL());
+  await expect.poll(async () => (await diagnostics(page)).tick).toBeGreaterThan(0);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'night');
+  await expect(page.locator('#sound-button')).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('les statistiques de la partie en cours progressent sans attendre une victoire', async ({ page }) => {
+  await ready(page, seededURL(103), 'fr');
+  await page.clock.install();
+  await page.locator('[data-panel="stats"]').click();
+  await expect(page.locator('#live-match-stats')).toBeVisible();
+  const before = await page.locator('#live-match-stats').innerText();
+  await page.clock.runFor(3000);
+  await expect.poll(() => page.locator('#live-match-stats').innerText()).not.toBe(before);
+  await expect(page.locator('#live-history-chart polyline')).toHaveCount(1);
+  const points = await page.locator('#live-history-chart polyline').getAttribute('points');
+  await page.clock.runFor(2000);
+  await expect(page.locator('#live-history-chart polyline')).not.toHaveAttribute('points', points!);
+  await page.locator('#pause-button').click();
+  await expect.poll(async () => (await diagnostics(page)).paused).toBe(true);
+  await page.clock.runFor(1000);
+  const paused = await page.locator('#live-match-stats').innerText();
+  await page.clock.runFor(2000);
+  await expect.poll(() => page.locator('#live-match-stats').innerText()).toBe(paused);
+  expect((await diagnostics(page)).historyLength).toBe(0);
+});
+
+test('les anciens résultats restent dans les statistiques mais ne rejouent pas avec de nouvelles règles', async ({ page }) => {
+  await page.addInitScript(config => {
+    localStorage.setItem('latte-vs-roast.history.v1', JSON.stringify([{ id: 'legacy', date: '2026-11-09T12:00:00.000Z', seed: 123, config, version: '1.0.0', winner: 'roast', ticks: 1200, history: [{ tick: 0, latte: 0.5 }, { tick: 1200, latte: 0.09 }] }]));
+  }, DEFAULT_CONFIG);
+  await ready(page, seededURL(103), 'fr');
+  await page.locator('[data-panel="stats"]').click();
+  await expect(page.locator('#match-history .history-row')).toHaveCount(1);
+  await expect(page.locator('#match-history')).toContainText('Café remporte le duel');
+  await expect(page.locator('#stats-summary')).toContainText('0:10');
+  await expect(page.locator('#match-history button')).toBeDisabled();
+  await expect(page.locator('#match-history button')).toContainText('Anciennes règles');
+  const before = await diagnostics(page);
+  await page.locator('#language-select').selectOption('en');
+  await expect(page.locator('#match-history button')).toBeDisabled();
+  expect((await diagnostics(page)).seed).toBe(before.seed);
 });

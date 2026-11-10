@@ -29,6 +29,7 @@ function emit(state: MatchState, event: MatchEvent): void {
 }
 
 export function captureCell(state: MatchState, col: number, row: number, team: Team): boolean {
+  if (state.winner) return false;
   if (!Number.isInteger(col) || !Number.isInteger(row) || col < 0 || col >= state.config.columns || row < 0 || row >= state.config.rows) return false;
   const index = row * state.config.columns + col;
   const owner = valueOf(team);
@@ -38,6 +39,13 @@ export function captureCell(state: MatchState, col: number, row: number, team: T
   state.counts[other(team)]--;
   state.revision++;
   emit(state, { type: 'capture', team, x: col + 0.5, y: row + 0.5, count: 1 });
+  // A fully eliminated camp must not regain a tile from an embedded ball or
+  // an already-flying projectile later in this tick. Other thresholds are
+  // still evaluated once the tick is complete.
+  if (state.counts[other(team)] === 0) {
+    state.winner = team;
+    emit(state, { type: 'victory', team, x: state.config.columns / 2, y: state.config.rows / 2 });
+  }
   return true;
 }
 
@@ -110,6 +118,7 @@ function ensurePosition(state: MatchState, ball: Ball, ghost: boolean): void {
 }
 
 function syncBalls(state: MatchState, team?: Team): void {
+  if (state.winner) return;
   for (const ball of state.balls) {
     if (team && ball.team !== team) continue;
     const attr = attributes(state, ball.team);
@@ -224,7 +233,11 @@ function collectAlong(state: MatchState, ball: Ball, x1: number, y1: number, x2:
       const index = state.pickups.findIndex(p => p.id === pickup.id);
       if (index < 0) continue;
       state.pickups.splice(index, 1);
+      const beforeX = ball.x, beforeY = ball.y;
       activateBonus(state, pickup.kind, ball.team, ball.id);
+      // Teleportation (or clearance after growing) invalidates this segment.
+      // Objects on the abandoned route must wait for a real future contact.
+      if (Math.abs(ball.x - beforeX) > EPS || Math.abs(ball.y - beforeY) > EPS || state.winner) return;
     }
   }
 }
@@ -261,7 +274,7 @@ function moveBall(state: MatchState, ball: Ball): void {
   let attr = attributes(state, ball.team);
   setSpeed(ball, attr.speed);
   let remaining = DT;
-  for (let iteration = 0; iteration < 20 && remaining > 1e-10; iteration++) {
+  for (let iteration = 0; iteration < 20 && remaining > 1e-10 && !state.winner; iteration++) {
     let time = remaining + 1;
     let nx = 0, ny = 0;
     let wall = false;
@@ -391,15 +404,15 @@ export function stepMatch(state: MatchState, ticks = 1): void {
     expire(state);
     syncBalls(state);
     // Snapshot prevents newly created balls from receiving an extra move this tick.
-    for (const ball of [...state.balls]) moveBall(state, ball);
-    updateTurrets(state);
+    for (const ball of [...state.balls]) { if (state.winner) break; moveBall(state, ball); }
+    if (!state.winner) updateTurrets(state);
     state.turrets = state.turrets.filter(t => t.expiresAt > state.tick);
-    if (state.tick >= state.nextSpawnAt) {
+    if (!state.winner && state.tick >= state.nextSpawnAt) {
       spawnPickup(state);
       state.nextSpawnAt = state.tick + Math.round(state.config.spawnSeconds * TICK_RATE);
     }
     const needed = Math.ceil(state.grid.length * state.config.winThreshold - 1e-9);
-    for (const team of teams) if (state.counts[team] >= needed) {
+    for (const team of teams) if (!state.winner && state.counts[team] >= needed) {
       state.winner = team;
       emit(state, { type: 'victory', team, x: state.config.columns / 2, y: state.config.rows / 2 });
       break;

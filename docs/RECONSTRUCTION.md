@@ -1,6 +1,8 @@
 # Règles et choix de reconstruction
 
-Version des règles : **1.0.0**. Cette version identifie le comportement de simulation utilisé par les liens de partage ; elle est indépendante de la version de l’application.
+Version des règles : **1.0.1**. Cette version identifie le comportement de simulation utilisé par les liens de partage ; elle est indépendante de la version de l’application.
+
+Depuis 1.0.1, un camp sans aucune case est immédiatement éliminé : sa bille ne peut pas recréer de territoire après la conquête totale. Une téléportation ou un repositionnement interrompt également la collecte sur le trajet quitté. Les résultats 1.0.0 restent dans les statistiques ; leur rejeu est désactivé pour éviter une simulation différente sous le même identifiant.
 
 ## Ce que montre la vidéo
 

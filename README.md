@@ -4,7 +4,7 @@ Une bataille de territoires au parfum de café. Deux billes autonomes font avanc
 
 **[Ouvrir le jeu](https://matteo12sa.github.io/latte-vs-roast/)** · [Règles de reconstruction](docs/RECONSTRUCTION.md) · [Historique des versions](CHANGELOG.md)
 
-L’interface est en français. Les deux camps sont **Crème** et **Café**. La partie démarre automatiquement, sans son, et fonctionne entièrement dans le navigateur sur ordinateur et mobile.
+L’interface démarre en **anglais**. Le sélecteur **English / Français**, en haut à droite, traduit immédiatement le jeu et mémorise le choix. Les camps sont **Latte / Roast** en anglais et **Crème / Café** en français. La partie démarre automatiquement avec le son activé ; selon la politique du navigateur, les effets sonores commencent au premier clic, toucher ou appui sur une touche.
 
 ![Une partie de Latte vs Roast](docs/apercu.png)
 
@@ -13,13 +13,13 @@ L’interface est en français. Les deux camps sont **Crème** et **Café**. La 
 - **Pause / reprendre** : bouton de commande ou touche Espace, hors des champs de saisie.
 - **Nouvelle partie** : nouvelle graine aléatoire. **Rejouer** : mêmes règles et même graine.
 - **Vitesse** : ×0,5, ×1, ×2 ou ×4 ; les règles de la simulation ne changent pas.
-- **Plein écran**, effets sonores activables, volume et réduction des effets visuels.
+- **Plein écran**, effets sonores activés par défaut avec bouton de coupure, volume et réduction des effets visuels.
 - **Partager** : copie un lien contenant les règles et la graine de la partie, pour la relancer depuis le début.
 - **Capture** : télécharge une image PNG du terrain et de son état.
 
 À chaque contact avec une case adverse, une bille la convertit puis rebondit. La première équipe à atteindre le seuil de domination gagne. En mode **Fidèle**, le terrain mesure 18 × 24 cases et le seuil vaut 90 %, soit 389 cases sur 432. Il n’y a pas de durée limite.
 
-Les onze bonus vont d’une accélération temporaire à une tourelle, en passant par une bille géante, des renforts et une traversée des frontières. Le guide intégré explique chacun d’eux en français.
+Les onze bonus vont d’une accélération temporaire à une tourelle, en passant par une bille géante, des renforts et une traversée des frontières. Le guide intégré explique chacun d’eux dans la langue choisie ; les captures PNG utilisent aussi cette langue.
 
 ## Personnaliser
 
@@ -37,6 +37,10 @@ Le profil **Fidèle** conserve la configuration de référence. Le profil **Pers
 Les changements de règles s’appliquent à la prochaine partie. Le thème, le son, la réduction des effets et la vitesse de lecture peuvent changer pendant une partie. Trois thèmes sont disponibles : café, nuit et contraste renforcé.
 
 Les préférences et les 100 dernières parties terminées sont conservées **dans ce navigateur**. Elles ne sont pas synchronisées entre appareils. Le jeu reste utilisable lorsque le stockage local n’est pas disponible. Une commande permet de réinitialiser les préférences sans effacer l’historique.
+
+Le panneau Statistiques affiche immédiatement la durée, les parts de territoire, le nombre de billes et la courbe du **duel en cours**. Les compteurs de victoires et la durée moyenne concernent les parties terminées. Les résultats restent visibles après rechargement ; ceux d’une ancienne version des règles sont conservés mais leur rejeu est désactivé.
+
+Le passage d’anglais à français conserve la partie, la pause et les réglages en cours de saisie. Les anciennes préférences de la version 1.1, qui n’avaient pas de langue, adoptent les nouveaux défauts anglais/son activé. Les choix de langue et de son effectués ensuite sont conservés, y compris une coupure volontaire du son.
 
 ## Installation locale
 
@@ -84,7 +88,7 @@ La reproductibilité s’entend pour une même version des règles et une même 
 
 ## Vérification
 
-La livraison a été vérifiée par **50 tests Vitest et 30 tests navigateur**. Les conditions, mesures de performance et limites figurent dans le [compte rendu de validation](docs/VALIDATION.md).
+La livraison 1.2 a été vérifiée par **63 tests Vitest et 51 tests navigateur**. Les conditions, mesures de performance et limites figurent dans le [compte rendu de validation](docs/VALIDATION.md).
 
 La suite Vitest couvre les collisions, les conversions, les seuils de victoire, les onze bonus, les cumuls, les expirations et la reproductibilité. Le test de robustesse exerce **200 graines**, pendant 120 secondes simulées ou jusqu’à la victoire, et vérifie les comptes de cases, les bornes, les vitesses et les plafonds d’entités.
 

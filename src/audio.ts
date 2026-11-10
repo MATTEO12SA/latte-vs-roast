@@ -13,12 +13,12 @@ export class GameAudio {
   unlock(): void {
     if (!this.enabled) return;
     try {
-      if (!this.context) {
+      if (!this.context || this.context.state === 'closed') {
         this.context = new AudioContext();
         this.master = this.context.createGain(); this.master.connect(this.context.destination);
         this.master.gain.setValueAtTime(this.volume, this.context.currentTime);
       }
-      void this.context.resume().catch(() => undefined);
+      if (this.context.state !== 'running') void this.context.resume().catch(() => undefined);
     } catch { /* Un navigateur sans audio reste entièrement jouable. */ }
   }
   private tone(frequency: number, duration: number, delay = 0, gain = 0.15): void {

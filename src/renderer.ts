@@ -1,7 +1,8 @@
-import { BASE_RADIUS, BONUS_INFO, RULES_VERSION, TICK_RATE, formatTime, teamName } from './config';
+import { BASE_RADIUS, RULES_VERSION, TICK_RATE, formatTime } from './config';
+import { bonusInfo, localizedTeamName, localeFor, t } from './i18n';
 import { THEMES } from './themes';
 import type { Palette } from './themes';
-import type { Ball, BonusKind, MatchEvent, MatchState, Team, ThemeName } from './types';
+import type { Ball, BonusKind, Language, MatchEvent, MatchState, Team, ThemeName } from './types';
 
 export interface RenderOptions {
   theme: ThemeName;
@@ -346,7 +347,7 @@ export class GameRenderer {
   }
 
   /** Create an independent, complete portrait card; does not mutate game state. */
-  capture(state: MatchState, theme: ThemeName): HTMLCanvasElement {
+  capture(state: MatchState, theme: ThemeName, language: Language = 'en'): HTMLCanvasElement {
     const output = document.createElement('canvas');
     const palette = THEMES[theme];
     const width = 800;
@@ -366,11 +367,11 @@ export class GameRenderer {
     background.addColorStop(0, palette.bgTop); background.addColorStop(1, palette.bgBottom);
     ctx.fillStyle = background; ctx.fillRect(0, 0, width, output.height);
     ctx.fillStyle = palette.muted; ctx.font = '600 11px system-ui, sans-serif';
-    ctx.fillText('UNE BATAILLE. DEUX CARACTÈRES.', margin, 40);
+    ctx.fillText(t('UNE BATAILLE. DEUX CARACTÈRES.', language), margin, 40);
     ctx.fillStyle = palette.ink; ctx.font = '600 39px Georgia, serif';
-    ctx.fillText('Crème contre Café', margin, 88);
+    ctx.fillText(t('Crème contre Café', language), margin, 88);
     ctx.fillStyle = palette.muted; ctx.font = '13px system-ui, sans-serif';
-    ctx.fillText(`Partie ${state.seed} · ${formatTime(state.tick)}`, margin, 117);
+    ctx.fillText(`${t('Partie', language)} ${state.seed} · ${formatTime(state.tick)}`, margin, 117);
 
     let y = 138;
     for (const effect of visibleEffects) {
@@ -379,7 +380,7 @@ export class GameRenderer {
       ctx.fillRect(margin, y, boardWidth, bannerHeight - 3);
       ctx.fillStyle = cream ? palette.latteBall : palette.roastBall;
       ctx.font = '700 10px system-ui, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText(`${BONUS_INFO[effect.kind].name.toLocaleUpperCase('fr-FR')} · ${teamName(effect.team).toLocaleUpperCase('fr-FR')}`, width / 2, y + 15);
+      ctx.fillText(`${bonusInfo(effect.kind, language).name.toLocaleUpperCase(localeFor(language))} · ${localizedTeamName(effect.team, language).toLocaleUpperCase(localeFor(language))}`, width / 2, y + 15);
       y += bannerHeight;
     }
     ctx.textAlign = 'left';
@@ -397,7 +398,7 @@ export class GameRenderer {
       const lineY = boardBottom + 23 + index * 21;
       const fraction = state.counts[team] / total;
       ctx.font = '700 10px system-ui, sans-serif'; ctx.fillStyle = palette.ink;
-      ctx.fillText(teamName(team).toLocaleUpperCase('fr-FR'), margin, lineY + 10);
+      ctx.fillText(localizedTeamName(team, language).toLocaleUpperCase(localeFor(language)), margin, lineY + 10);
       ctx.fillStyle = '#ffffff18'; ctx.fillRect(trackX, lineY, trackWidth, 13);
       ctx.fillStyle = team === 'latte' ? palette.cream : palette.roastBall;
       ctx.fillRect(trackX, lineY, trackWidth * fraction, 13);
@@ -420,14 +421,14 @@ export class GameRenderer {
       ctx.lineTo(crownX + 15, cardY + 30); ctx.lineTo(crownX + 12, cardY + 51);
       ctx.lineTo(crownX - 12, cardY + 51); ctx.closePath(); ctx.fill();
       ctx.textAlign = 'center'; ctx.font = '800 22px system-ui, sans-serif';
-      ctx.fillText(`${teamName(state.winner).toLocaleUpperCase('fr-FR')} DOMINE !`, width / 2, cardY + 90);
-      ctx.font = '13px system-ui, sans-serif'; ctx.fillText(`Victoire en ${formatTime(state.tick)}`, width / 2, cardY + 119);
+      ctx.fillText(`${localizedTeamName(state.winner, language).toLocaleUpperCase(localeFor(language))} ${t('DOMINE !', language)}`, width / 2, cardY + 90);
+      ctx.font = '13px system-ui, sans-serif'; ctx.fillText(`${t('Victoire en', language)} ${formatTime(state.tick)}`, width / 2, cardY + 119);
       ctx.textAlign = 'left';
     }
 
     ctx.fillStyle = palette.muted; ctx.font = '12px system-ui, sans-serif';
     ctx.fillText('Latte vs Roast', margin, output.height - 47);
-    ctx.textAlign = 'right'; ctx.fillText(`Règles ${RULES_VERSION}`, width - margin, output.height - 47);
+    ctx.textAlign = 'right'; ctx.fillText(`${t('Règles', language)} ${RULES_VERSION}`, width - margin, output.height - 47);
     ctx.textAlign = 'left'; ctx.font = '10px system-ui, sans-serif';
     ctx.fillText('matteo12sa.github.io/latte-vs-roast', margin, output.height - 27);
     return output;
