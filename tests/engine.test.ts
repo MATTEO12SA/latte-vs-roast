@@ -3,8 +3,9 @@ import { activateBonus, captureCell, createMatch, stepMatch } from '../src/engin
 import { BASE_RADIUS, BONUS_INFO, DEFAULT_CONFIG, MAX_BALLS, TICK_RATE, normalizeConfig } from '../src/config';
 import type { Ball, BonusKind, MatchState, Team } from '../src/types';
 
-const quiet = () => createMatch({ ...DEFAULT_CONFIG, enabledBonuses: [] }, 12345);
-const largeQuiet = () => createMatch({ ...DEFAULT_CONFIG, columns: 30, rows: 40, winThreshold: 1, enabledBonuses: [] }, 17);
+// Fixed physics fixtures keep their speed independent of default pacing changes.
+const quiet = () => createMatch({ ...DEFAULT_CONFIG, baseSpeed: 8, enabledBonuses: [] }, 12345);
+const largeQuiet = () => createMatch({ ...DEFAULT_CONFIG, baseSpeed: 8, columns: 30, rows: 40, winThreshold: 1, enabledBonuses: [] }, 17);
 function ball(state: MatchState, team: Team = 'latte'): Ball { return state.balls.find(b => b.team === team)!; }
 function aim(b: Ball, x: number, y: number, vx: number, vy: number): void { Object.assign(b, { x, y, vx, vy }); }
 function gridWithLatteCount(state: MatchState, count: number): void {
@@ -81,9 +82,9 @@ describe('terrain et physique', () => {
 });
 
 describe('bonus', () => {
-  it('fait apparaître le premier bonus après trois secondes', () => {
+  it('fait apparaître le premier bonus au délai configuré', () => {
     const state = createMatch(DEFAULT_CONFIG, 12); state.balls = [];
-    stepMatch(state, 3 * TICK_RATE - 1); expect(state.pickups).toHaveLength(0);
+    stepMatch(state, state.config.spawnSeconds * TICK_RATE - 1); expect(state.pickups).toHaveLength(0);
     stepMatch(state, 1); expect(state.pickups).toHaveLength(1);
     stepMatch(state, TICK_RATE * 60); expect(state.pickups.length).toBeLessThanOrEqual(4);
   });
@@ -247,7 +248,7 @@ describe('reproductibilité et configuration', () => {
 
   it('borne les réglages et supprime les doublons de bonus', () => {
     const c = normalizeConfig({ columns: 99, rows: -4, baseSpeed: Infinity, winThreshold: 3, spawnSeconds: 0, enabledBonuses: ['nitro', 'nitro'] });
-    expect(c).toEqual({ columns: 30, rows: 16, baseSpeed: 8, winThreshold: 1, spawnSeconds: 1, enabledBonuses: ['nitro'] });
+    expect(c).toEqual({ columns: 30, rows: 16, baseSpeed: DEFAULT_CONFIG.baseSpeed, winThreshold: 1, spawnSeconds: 1, enabledBonuses: ['nitro'] });
   });
 
   it('protège la configuration de référence des modifications d’une partie', () => {

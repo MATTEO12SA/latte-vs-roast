@@ -19,6 +19,8 @@ L’interface démarre en **anglais**. Le sélecteur **English / Français**, en
 
 À chaque contact avec une case adverse, une bille la convertit puis rebondit. La première équipe à atteindre le seuil de domination gagne. En mode **Fidèle**, le terrain mesure 18 × 24 cases et le seuil vaut 90 %, soit 389 cases sur 432. Il n’y a pas de durée limite.
 
+Le rythme par défaut est réglé à 11 cases/s avec un bonus toutes les 2 secondes : **8 min 21 s de simulation en moyenne sur 600 parties**, soit **2 min 05 s à ×4**. Les parties peuvent durer davantage ; les détails et les résultats reproductibles figurent dans la [mesure des durées](docs/DUREES.md).
+
 Les onze bonus vont d’une accélération temporaire à une tourelle, en passant par une bille géante, des renforts et une traversée des frontières. Le guide intégré explique chacun d’eux dans la langue choisie ; les captures PNG utilisent aussi cette langue.
 
 ## Personnaliser
@@ -65,6 +67,7 @@ Ouvrir l’adresse affichée par Vite, avec le chemin `/latte-vs-roast/`.
 | `npm test` | Tests Vitest, dont 200 graines de simulation |
 | `npm run test:stress` | Tests de robustesse seuls |
 | `npm run test:e2e` | Tests de navigation Playwright |
+| `npm run simulate` | Mesure reproductible de la durée de 300 parties complètes |
 
 Avant la première exécution de Playwright :
 
@@ -73,6 +76,8 @@ npx playwright install chromium firefox webkit
 ```
 
 Sous Linux, utiliser `npx playwright install --with-deps chromium firefox webkit` si les bibliothèques système ne sont pas encore présentes.
+
+La mesure de durée utilise le même moteur que le jeu, sans affichage ni son. Exemple : `npm run simulate -- --count 300 --first-seed 1 --limit 7200 --output .local/durations.json`. Les résultats distinguent moyenne, médiane, percentiles et parties inachevées au plafond de mesure ; ces dernières ne sont jamais comptées comme des victoires ni incluses dans la moyenne. Les secondes mesurées sont celles de la simulation : à ×4, le temps d’observation sans pause est divisé par quatre.
 
 ## Architecture
 
@@ -88,7 +93,7 @@ La reproductibilité s’entend pour une même version des règles et une même 
 
 ## Vérification
 
-La livraison 1.2 a été vérifiée par **63 tests Vitest et 51 tests navigateur**. Les conditions, mesures de performance et limites figurent dans le [compte rendu de validation](docs/VALIDATION.md).
+La livraison 1.2 a été vérifiée par **64 tests Vitest et 51 tests navigateur**. Les conditions, mesures de performance et limites figurent dans le [compte rendu de validation](docs/VALIDATION.md).
 
 La suite Vitest couvre les collisions, les conversions, les seuils de victoire, les onze bonus, les cumuls, les expirations et la reproductibilité. Le test de robustesse exerce **200 graines**, pendant 120 secondes simulées ou jusqu’à la victoire, et vérifie les comptes de cases, les bornes, les vitesses et les plafonds d’entités.
 

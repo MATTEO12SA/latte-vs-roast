@@ -1,6 +1,6 @@
 # Validation de la livraison 1.2.0
 
-Vérifications du 10 novembre 2026 : TypeScript, ESLint, compilation, **63 tests Vitest** et **51 scénarios Playwright** sur Chromium, Firefox et WebKit. Les trois assertions sur l’affichage des statistiques ont été corrigées pour comparer le même format de texte, puis réexécutées avec succès.
+Vérifications du 10 novembre 2026 : TypeScript, ESLint, compilation, **64 tests Vitest** et **51 scénarios Playwright** sur Chromium, Firefox et WebKit.
 
 - Anglais et son actifs par défaut, migration des anciens réglages, choix français/anglais et silence volontaire conservés après rechargement.
 - Changement de langue sans relancer la partie, sans modifier la pause ni effacer les réglages en cours de saisie ; victoire, bonus, statistiques et captures traduits.
@@ -8,6 +8,8 @@ Vérifications du 10 novembre 2026 : TypeScript, ESLint, compilation, **63 tests
 - Statistiques en direct avant la première victoire, courbe et durée progressant pendant la partie et stables pendant la pause ; résultat enregistré une seule fois puis conservé après rechargement.
 - Régressions corrigées : disparition définitive du camp à zéro case, et arrêt de la collecte sur un ancien trajet après téléportation.
 - Règles 1.0.1 : les résultats historiques 1.0.0 sont conservés pour les compteurs, leur rejeu reste désactivé.
+- Ajustement des paramètres par défaut après simulation : 600 parties complètes, moyenne 8 min 21 s simulées (2 min 05 s à ×4). Une série indépendante de 300 graines confirme le rythme. Les quantiles, parties longues et données brutes sont dans la [mesure des durées](DUREES.md).
+- Test de rejeu d’une partie 1.0.1 avec les anciens paramètres explicites : même victoire à la même étape 45 344, malgré le changement des valeurs par défaut.
 
 Les tests de son vérifient la reprise du contexte audio après un geste autorisé et la coupure du gain maître. Les règles d’autoplay du navigateur peuvent exiger un premier clic ou toucher ; l’interface garde alors le son activé en attente de ce geste.
 

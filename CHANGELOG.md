@@ -9,6 +9,8 @@
 - Statistiques de la partie en cours : durée, parts de territoire, nombre de billes et courbe en direct, y compris avant la première victoire.
 - Correction d’une résurrection du camp éliminé au seuil de 100 %, et d’une collecte de bonus sur un trajet abandonné après téléportation.
 - Règles 1.0.1 : les anciens résultats restent dans le carnet, mais leurs anciens liens ne sont pas rejoués avec des règles différentes.
+- Rythme par défaut ajusté à 11 cases/s et un bonus toutes les 2 secondes après mesure : moyenne de 8 min 21 s sur 600 parties, soit 2 min 05 s à ×4. Les liens 1.0.1 contenant les anciens paramètres restent reproductibles.
+- Commande `npm run simulate`, rapport des durées et données par graine publiés pour vérifier les moyennes et les parties longues.
 
 ## 1.1.0 — Version enrichie
 

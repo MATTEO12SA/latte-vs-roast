@@ -16,7 +16,8 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "test:stress": "vitest run tests/stress.test.ts"
+    "test:stress": "vitest run tests/stress.test.ts",
+    "simulate": "node scripts/simulate.mjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

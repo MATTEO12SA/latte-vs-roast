@@ -20,17 +20,19 @@ Les intitulés de onze bonus sont lisibles. Les collectes multiples de Nitro, Co
 | Partage initial | Moitié gauche Crème, moitié droite Café |
 | Billes initiales | Une par camp |
 | Rayon normal | 0,37 case |
-| Vitesse normale | 8 cases/s |
+| Vitesse normale | 11 cases/s |
 | Physique | 120 étapes fixes par seconde |
 | Victoire | 90 %, soit au moins 389 cases |
-| Premier bonus | Après 3 secondes simulées |
-| Bonus suivants | Toutes les 3 secondes simulées |
+| Premier bonus | Après 2 secondes simulées |
+| Bonus suivants | Toutes les 2 secondes simulées |
 | Sélection | Uniforme parmi les types activés |
 | Objets au sol | Quatre maximum, durée de vie de 15 s |
 | Billes | Sept maximum par camp, infiltrateur compris |
 | Vitesse maximale | 32 cases/s |
 
 Les billes n’ont pas de collision entre elles. Une conversion de case conserve toujours un unique propriétaire ; la somme des territoires reste égale au nombre de cases du plateau.
+
+La version 1.2 ajuste le rythme à la demande de l’utilisateur : vitesse initiale de 8 à 11 cases/s et intervalle des bonus de 3 à 2 secondes. Les valeurs initiales produisaient de nombreuses parties dépassant deux heures simulées. Le réglage retenu donne **8 min 21 s en moyenne sur 600 parties**, soit environ **2 min 05 s à ×4**. La [mesure des durées](DUREES.md) détaille les graines, les percentiles et les limites. Les anciens paramètres restent disponibles en Personnalisé et dans leurs liens de partage.
 
 ## Bonus : observation et choix
 

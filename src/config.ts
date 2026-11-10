@@ -17,11 +17,11 @@ export const BONUS_INFO: Record<BonusKind, { name: string; icon: string; descrip
   wormhole: { name: 'Trou de ver', icon: '⟷', description: 'La bille réapparaît à un endroit éloigné de son territoire, sans perdre son élan.', seconds: 1 },
   turret: { name: 'Tourelle', icon: '⊕', description: 'Pendant 8 secondes, une tourelle tire chaque seconde vers le territoire adverse.', seconds: 8 }
 };
-export const DEFAULT_CONFIG: MatchConfig = { columns: 18, rows: 24, baseSpeed: 8, winThreshold: 0.9, spawnSeconds: 3, enabledBonuses: [...BONUS_KINDS] };
+export const DEFAULT_CONFIG: MatchConfig = { columns: 18, rows: 24, baseSpeed: 11, winThreshold: 0.9, spawnSeconds: 2, enabledBonuses: [...BONUS_KINDS] };
 export function normalizeConfig(value: Partial<MatchConfig> = {}): MatchConfig {
   const number = (n: unknown, fallback: number, min: number, max: number) => typeof n === 'number' && Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : fallback;
-  const columns = Math.round(number(value.columns, 18, 12, 30) / 2) * 2;
-  return { columns, rows: Math.round(number(value.rows, 24, 16, 40)), baseSpeed: number(value.baseSpeed, 8, 4, 12), winThreshold: number(value.winThreshold, 0.9, 0.7, 1), spawnSeconds: number(value.spawnSeconds, 3, 1, 10), enabledBonuses: Array.isArray(value.enabledBonuses) ? BONUS_KINDS.filter(k => value.enabledBonuses!.includes(k)) : [...BONUS_KINDS] };
+  const columns = Math.round(number(value.columns, DEFAULT_CONFIG.columns, 12, 30) / 2) * 2;
+  return { columns, rows: Math.round(number(value.rows, DEFAULT_CONFIG.rows, 16, 40)), baseSpeed: number(value.baseSpeed, DEFAULT_CONFIG.baseSpeed, 4, 12), winThreshold: number(value.winThreshold, DEFAULT_CONFIG.winThreshold, 0.7, 1), spawnSeconds: number(value.spawnSeconds, DEFAULT_CONFIG.spawnSeconds, 1, 10), enabledBonuses: Array.isArray(value.enabledBonuses) ? BONUS_KINDS.filter(k => value.enabledBonuses!.includes(k)) : [...BONUS_KINDS] };
 }
 export const defaultPreferences = (): Preferences => ({ language: 'en', theme: 'coffee', sound: true, volume: 0.3, reducedEffects: typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches, profile: 'faithful', customConfig: normalizeConfig() });
 export function formatTime(ticks: number): string { const s = Math.floor(ticks / TICK_RATE); return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }
