@@ -3,13 +3,6 @@ import { activateBonus, createMatch, stepMatch } from '../src/engine';
 import { DEFAULT_CONFIG } from '../src/config';
 
 describe('régressions de conquête', () => {
-  it('conserve le rejeu des paramètres partagés avant le réglage du rythme', () => {
-    const state = createMatch({ ...DEFAULT_CONFIG, baseSpeed: 8, spawnSeconds: 3 }, 1);
-    stepMatch(state, 600 * 120);
-    expect(state.winner).toBe('latte');
-    expect(state.tick).toBe(45344);
-  });
-
   it.each(['latte', 'roast'] as const)('une capture complète par %s ne ressuscite pas le camp éliminé', winner => {
     const s = createMatch({ ...DEFAULT_CONFIG, winThreshold: 1, enabledBonuses: [] }, 123);
     const loser = winner === 'latte' ? 'roast' : 'latte';

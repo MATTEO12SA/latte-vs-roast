@@ -21,7 +21,7 @@ test('démarrage autonome, pause, reprise et raccourci clavier', async ({ page }
   page.on('pageerror', error => errors.push(error.message));
   await ready(page);
   await expect(page.locator('html')).toHaveAttribute('lang', 'fr');
-  await expect(page.getByRole('button', { name: 'Couper le son', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#sound-button')).toHaveAttribute('aria-pressed', 'true');
   const first = await diagnostics(page);
   expect(first.counts.latte + first.counts.roast).toBe(432);
   await page.getByRole('button', { name: 'Mettre en pause', exact: true }).click();
@@ -175,8 +175,8 @@ test('affiche le carnet local et permet de rejouer une partie terminée', async 
 test('termine une vraie partie et enregistre le résultat une seule fois', async ({ page }) => {
   test.slow();
   const config: MatchConfig = { ...DEFAULT_CONFIG, columns: 12, rows: 16, baseSpeed: 12, winThreshold: 0.7, spawnSeconds: 1, enabledBonuses: ['wreckingBall', 'nitro', 'colossus'] };
-  await ready(page, seededURL(17, config));
   await page.clock.install();
+  await ready(page, seededURL(17, config));
   for (let i = 0; i < 24 && !(await diagnostics(page)).winner; i++) await page.clock.runFor(5000);
   const result = await diagnostics(page);
   expect(result.winner).not.toBeNull();
@@ -208,7 +208,7 @@ test('anglais et son actifs par défaut, avec un sélecteur visible en haut à d
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   await expect(page.locator('#language-select')).toHaveValue('en');
   await expect(page.locator('#sound-button')).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('#sound-button')).toHaveAccessibleName(/mute|turn.*off/i);
+  await expect(page.locator('#sound-button')).toHaveAccessibleName(/enable|mute/i);
   const languageBox = await page.locator('#language-select').boundingBox();
   expect(languageBox).not.toBeNull();
   expect(languageBox!.x).toBeGreaterThan((page.viewportSize()?.width ?? 1280) / 2);
@@ -252,6 +252,8 @@ test('changer de langue conserve la partie en pause et les réglages non appliqu
 test('langue et silence choisis persistent, réinitialiser restaure anglais et son', async ({ page }) => {
   await ready(page, seededURL(), 'en');
   await page.locator('#language-select').selectOption('fr');
+  await page.locator('body').click({ position: { x: 4, y: 4 } });
+  await expect(page.locator('#sound-button')).toHaveAccessibleName('Couper le son');
   await page.locator('#sound-button').click();
   await expect(page.locator('#sound-button')).toHaveAttribute('aria-pressed', 'false');
   await page.reload();
@@ -296,8 +298,8 @@ test('les anciennes préférences adoptent anglais et son actif sans perdre le t
 });
 
 test('les statistiques de la partie en cours progressent sans attendre une victoire', async ({ page }) => {
-  await ready(page, seededURL(103), 'fr');
   await page.clock.install();
+  await ready(page, seededURL(103), 'fr');
   await page.locator('[data-panel="stats"]').click();
   await expect(page.locator('#live-match-stats')).toBeVisible();
   const before = await page.locator('#live-match-stats').innerText();

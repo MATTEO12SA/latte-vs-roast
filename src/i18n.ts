@@ -36,6 +36,8 @@ export const ENGLISH: Record<string, string> = {
   'Rejouer la même partie': 'Replay the same match',
   'Nouvelle partie': 'New match',
   'Activer le son': 'Enable sound',
+  'Le navigateur bloque encore le son. Touchez à nouveau le bouton du son.': 'The browser is still blocking audio. Tap the sound button again.',
+  'Ce navigateur ne prend pas en charge le son du jeu.': 'This browser does not support game audio.',
   'Couper le son': 'Mute sound',
   'Plein écran': 'Full screen',
   'Identifiant reproductible de la partie': 'Reproducible match identifier',
@@ -120,13 +122,13 @@ export const ENGLISH: Record<string, string> = {
 
 const bonusEnglish: Record<BonusKind, { name: string; description: string }> = {
   ghost: { name: 'Eclipse Ghost', description: 'Tiny balls cross borders and paint their path for 6 seconds.' },
-  blackHole: { name: 'Black Hole', description: 'A vortex attracts nearby balls for 6 seconds, then releases them.' },
+  blackHole: { name: 'Black Hole', description: 'A fixed vortex with a 3-cell radius appears near an opponent for 6 seconds. It pulls enemies in and slows them by 35%, holds them for 0.35 s at the center, then releases them with 1 s of immunity. Allies are unaffected.' },
   tidalWave: { name: 'Tidal Wave', description: 'Your starting half instantly returns to your team’s color.' },
-  speed: { name: 'Speed +33%', description: 'Your balls gain 33% speed for 8 seconds.' },
-  nitro: { name: 'Nitro', description: 'Extra speed and a glowing trail for 10 seconds. Up to two stacked charges.' },
-  wreckingBall: { name: 'Wrecking Ball', description: 'Each impact captures a 3 × 3 area for 8 seconds.' },
-  colossus: { name: 'Colossus', description: 'Ball radius grows 2.5 times, or 5 times with two charges, for 8 seconds.' },
-  infiltrator: { name: 'Infiltrator', description: 'A ball infiltrates enemy territory for 10 seconds. Further pickups extend its mission.' },
+  speed: { name: 'Speed +33%', description: 'Your balls gain 33% speed for 8 seconds, capped at 32 cells/s. Another pickup refreshes the duration.' },
+  nitro: { name: 'Nitro', description: 'Each charge adds base speed and a glowing trail for 10 seconds. Two independent charges, with total speed capped at 32 cells/s.' },
+  wreckingBall: { name: 'Wrecking Ball', description: 'Each impact on an enemy cell captures a 3 × 3 area for 8 seconds. Ghost crosses without impacts: this effect waits for Ghost to end, but its timer keeps running.' },
+  colossus: { name: 'Colossus', description: 'For 8 seconds, radius grows ×2.5, or ×5 with two charges. The ball captures a wider front on impact. Ghost temporarily overrides it with its tiny radius.' },
+  infiltrator: { name: 'Infiltrator', description: 'A ball lands behind enemy lines for 10 seconds, even with Colossus. Each further pickup adds 10 seconds. Total limit: seven balls per team.' },
   trinity: { name: 'Trinity', description: 'Two extra balls for 12 seconds, up to seven balls per team.' },
   wormhole: { name: 'Wormhole', description: 'The ball reappears in a distant part of its territory, keeping its momentum.' },
   turret: { name: 'Turret', description: 'For 8 seconds, a turret fires at enemy territory every second.' }

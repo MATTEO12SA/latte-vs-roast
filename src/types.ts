@@ -3,7 +3,7 @@ export type BonusKind = 'ghost' | 'blackHole' | 'tidalWave' | 'speed' | 'nitro' 
 export type ThemeName = 'coffee' | 'night' | 'contrast';
 export type Language = 'en' | 'fr';
 export interface MatchConfig { columns: number; rows: number; baseSpeed: number; winThreshold: number; spawnSeconds: number; enabledBonuses: BonusKind[]; }
-export interface Ball { id: number; team: Team; x: number; y: number; vx: number; vy: number; radius: number; expiresAt: number | null; role: 'original' | 'trinity' | 'infiltrator'; holeCooldownUntil: number; }
+export interface Ball { id: number; team: Team; x: number; y: number; vx: number; vy: number; radius: number; expiresAt: number | null; role: 'original' | 'trinity' | 'infiltrator'; holeCooldownUntil: number; capturedBy: number | null; capturedUntil: number; }
 export interface Pickup { id: number; kind: BonusKind; x: number; y: number; expiresAt: number; }
 export interface Effect { id: number; team: Team; kind: BonusKind; startedAt: number; expiresAt: number; }
 export interface Vortex { id: number; team: Team; x: number; y: number; expiresAt: number; }

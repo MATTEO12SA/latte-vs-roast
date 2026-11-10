@@ -1,4 +1,19 @@
-# Validation de la livraison 1.2.0
+# Validation de la livraison 1.3.0
+
+Vérifications du 10 novembre 2026, règles **1.1.0** : TypeScript, ESLint, compilation, **77 tests Vitest** et **54 scénarios Playwright** sur Chromium, Firefox et WebKit.
+
+- Contrats des onze bonus, collecte dans l’ordre des contacts, effet immédiat sur le mouvement, Infiltrateur agrandi en territoire adverse, contact large Colosse, protection des alliés contre Trou noir, capture de 0,35 s, libération, immunité et huit tirs de Tourelle.
+- **121 paires de bonus** exercées sur les deux camps avec contrôle des positions, vitesses, comptes de cases, plafonds et expirations ; robustesse sur 200 graines supplémentaires.
+- Mesures de puissance sur 96 graines et 258 situations, **11 352 branches** au total dans les deux méthodes finales. Les résultats et limites figurent dans [l’audit des bonus](BONUS.md).
+- **600 parties complètes** : 301 victoires Crème, 299 Café, moyenne 6 min 43 s simulées. La [mesure des durées](DUREES.md) conserve aussi les chiffres de la version précédente.
+- Onze rendus inspectés, deux langues, exports de 800 pixels sans mutation de la simulation, image stable pendant la pause. À saturation, une collecte conserve ses 17 éléments de retour visuel sans dépasser 300 particules.
+- Le son est créé au premier geste ; activation, coupure et reprise vérifiées au toucher avec le véritable Web Audio sur Chromium et Firefox. Le WebKit fourni sous Windows n’expose pas cette API : le scénario vérifie alors le message d’indisponibilité et la commande de coupure, sans prétendre mesurer un son inexistant.
+- Tests unitaires du son : contexte interrompu ou fermé, constructeur préfixé, reprise après l’arrière-plan, gain maître, volume nul et absence d’API. Les sons restent synthétisés pour le jeu ; aucun bouton ni son de test dans l’interface.
+- Préférences EN/FR et son conservées, statistiques et historique fonctionnels. Les résultats 1.0.0/1.0.1 restent consultables ; les anciens liens expliquent l’incompatibilité.
+
+Le téléphone Android signalé par l’utilisateur n’est pas pilotable depuis cet environnement. Le démarrage tactile et les appels audio sont validés dans les navigateurs disponibles ; l’audibilité sur ce téléphone précis reste à confirmer après mise à jour. La disposition à 320 et 390 pixels reste sans débordement.
+
+## Validation historique de la version 1.2.0
 
 Vérifications du 10 novembre 2026 : TypeScript, ESLint, compilation, **64 tests Vitest** et **51 scénarios Playwright** sur Chromium, Firefox et WebKit.
 

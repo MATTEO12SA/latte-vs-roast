@@ -1,18 +1,18 @@
 import type { BonusKind, MatchConfig, Preferences } from './types';
-export const RULES_VERSION = '1.0.1';
+export const RULES_VERSION = '1.1.0';
 export const TICK_RATE = 120;
 export const BASE_RADIUS = 0.37;
 export const MAX_BALLS = 7;
 export const BONUS_KINDS: BonusKind[] = ['ghost', 'blackHole', 'tidalWave', 'speed', 'nitro', 'wreckingBall', 'colossus', 'infiltrator', 'trinity', 'wormhole', 'turret'];
 export const BONUS_INFO: Record<BonusKind, { name: string; icon: string; description: string; seconds: number }> = {
   ghost: { name: 'Fantôme d’éclipse', icon: '◌', description: 'De minuscules billes traversent les frontières et peignent leur passage pendant 6 secondes.', seconds: 6 },
-  blackHole: { name: 'Trou noir', icon: '◎', description: 'Un vortex attire les billes proches pendant 6 secondes, puis les libère.', seconds: 6 },
+  blackHole: { name: 'Trou noir', icon: '◎', description: 'Un vortex fixe de 3 cases de rayon apparaît près d’un adversaire pendant 6 secondes. Il attire et ralentit les ennemis de 35 %, les retient 0,35 s au centre puis les libère avec 1 s d’immunité. Les alliés sont épargnés.', seconds: 6 },
   tidalWave: { name: 'Raz-de-marée', icon: '≋', description: 'Votre moitié de départ reprend instantanément vos couleurs.', seconds: 1 },
-  speed: { name: 'Vitesse +33 %', icon: '↗', description: 'Vos billes gagnent 33 % de vitesse pendant 8 secondes.', seconds: 8 },
-  nitro: { name: 'Nitro', icon: 'ϟ', description: 'Un supplément de vitesse et une traînée lumineuse pendant 10 secondes. Deux charges cumulables.', seconds: 10 },
-  wreckingBall: { name: 'Boule de démolition', icon: '✦', description: 'Chaque impact conquiert une zone de 3 × 3 cases pendant 8 secondes.', seconds: 8 },
-  colossus: { name: 'Colosse', icon: '●', description: 'Le rayon est multiplié par 2,5, puis par 5 avec deux charges, pendant 8 secondes.', seconds: 8 },
-  infiltrator: { name: 'Infiltrateur', icon: '◇', description: 'Une bille s’installe derrière les lignes adverses pour 10 secondes. Les collectes suivantes prolongent sa mission.', seconds: 10 },
+  speed: { name: 'Vitesse +33 %', icon: '↗', description: 'Vos billes gagnent 33 % de vitesse pendant 8 secondes, dans la limite de 32 cases/s. Une nouvelle collecte renouvelle la durée.', seconds: 8 },
+  nitro: { name: 'Nitro', icon: 'ϟ', description: 'Chaque charge ajoute la vitesse de base et une traînée lumineuse pendant 10 secondes. Deux charges indépendantes, vitesse totale limitée à 32 cases/s.', seconds: 10 },
+  wreckingBall: { name: 'Boule de démolition', icon: '✦', description: 'Chaque impact sur une case adverse conquiert une zone de 3 × 3 pendant 8 secondes. Le Fantôme traverse sans impact : cet effet attend son expiration, mais sa durée continue.', seconds: 8 },
+  colossus: { name: 'Colosse', icon: '●', description: 'Pendant 8 secondes, le rayon passe à ×2,5, puis ×5 avec deux charges. La bille conquiert un front plus large au contact. Le Fantôme impose temporairement son petit rayon.', seconds: 8 },
+  infiltrator: { name: 'Infiltrateur', icon: '◇', description: 'Une bille s’installe derrière les lignes adverses pour 10 secondes, même avec Colosse. Chaque collecte suivante ajoute 10 secondes. Limite totale : sept billes par camp.', seconds: 10 },
   trinity: { name: 'Trinité', icon: '⁙', description: 'Deux billes supplémentaires pendant 12 secondes, dans la limite de sept par camp.', seconds: 12 },
   wormhole: { name: 'Trou de ver', icon: '⟷', description: 'La bille réapparaît à un endroit éloigné de son territoire, sans perdre son élan.', seconds: 1 },
   turret: { name: 'Tourelle', icon: '⊕', description: 'Pendant 8 secondes, une tourelle tire chaque seconde vers le territoire adverse.', seconds: 8 }

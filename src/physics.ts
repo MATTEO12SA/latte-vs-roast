@@ -2,6 +2,20 @@
 export interface Hit { time: number; nx: number; ny: number; }
 const EPS = 1e-9;
 
+/** First contact with a circular pickup, including an initial overlap. */
+export function sweepPointCircle(x: number, y: number, vx: number, vy: number, cx: number, cy: number, radius: number, duration: number): number | null {
+  const dx = x - cx, dy = y - cy;
+  const c = dx * dx + dy * dy - radius * radius;
+  if (c <= EPS) return 0;
+  const a = vx * vx + vy * vy;
+  if (a <= EPS) return null;
+  const b = dx * vx + dy * vy;
+  const d = b * b - a * c;
+  if (d < 0 || b >= 0) return null;
+  const time = (-b - Math.sqrt(d)) / a;
+  return time >= -EPS && time <= duration + EPS ? Math.max(0, time) : null;
+}
+
 export function circleOverlapsCell(x: number, y: number, radius: number, col: number, row: number): boolean {
   const dx = x - Math.max(col, Math.min(col + 1, x));
   const dy = y - Math.max(row, Math.min(row + 1, y));

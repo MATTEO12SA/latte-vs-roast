@@ -138,6 +138,8 @@ export class GameRenderer {
       if (event.type === 'expire') continue;
       const burst = event.type === 'bonus' || event.type === 'teleport' || event.type === 'victory';
       const amount = burst ? 16 : event.type === 'capture' ? 3 : 1;
+      // Important feedback stays visible even after a large territory capture.
+      if (burst && this.particles.length + amount + 1 > MAX_PARTICLES) this.particles.splice(0, this.particles.length + amount + 1 - MAX_PARTICLES);
       for (let i = 0; i < amount && this.particles.length < MAX_PARTICLES; i++) {
         const angle = this.random() * TAU;
         const speed = (burst ? 2 : 0.5) + this.random() * (burst ? 4 : 1.3);
@@ -237,10 +239,10 @@ export class GameRenderer {
     for (const vortex of state.vortexes) {
       const color = vortex.team === 'latte' ? palette.latteBall : palette.roastBall;
       ctx.save(); ctx.translate(vortex.x, vortex.y);
-      ctx.strokeStyle = color; ctx.fillStyle = color;
-      ctx.globalAlpha = 0.11;
-      ctx.lineWidth = 0.04;
-      ctx.beginPath(); ctx.arc(0, 0, 1.05, 0, TAU); ctx.stroke();
+      ctx.strokeStyle = palette.pickup; ctx.fillStyle = color;
+      ctx.globalAlpha = 0.28;
+      ctx.lineWidth = 0.055;
+      ctx.beginPath(); ctx.arc(0, 0, 3, 0, TAU); ctx.stroke();
       ctx.globalAlpha = 0.8;
       ctx.rotate(effects ? clock * 2 : 0);
       for (let i = 0; i < 3; i++) {
@@ -249,6 +251,7 @@ export class GameRenderer {
       }
       ctx.globalAlpha = 1;
       circle(ctx, 0, 0, 0.25);
+      ctx.beginPath(); ctx.arc(0, 0, 0.25, 0, TAU); ctx.stroke();
       if (effects) {
         for (let i = 0; i < 13; i++) {
           const angle = i * 2.4 + clock * 0.7;
@@ -308,6 +311,10 @@ export class GameRenderer {
       }
       ctx.fillStyle = color;
       circle(ctx, ball.x, ball.y, ball.radius);
+      if (ball.capturedBy !== null) {
+        ctx.strokeStyle = palette.pickup; ctx.lineWidth = 0.045;
+        ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.radius + 0.1, 0, TAU); ctx.stroke();
+      }
       if (ball.role === 'infiltrator') {
         ctx.strokeStyle = color; ctx.lineWidth = 0.035;
         ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.radius + 0.11, 0, TAU); ctx.stroke();

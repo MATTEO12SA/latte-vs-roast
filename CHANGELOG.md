@@ -1,5 +1,15 @@
 # Historique des versions
 
+## 1.3.0 — Bonus cohérents et son mobile
+
+- Audit des onze bonus, 121 paires de combinaisons, mesures isolées et avec collectes suivantes ; rapports, données et commande `analyze:bonuses`.
+- Colosse conquiert un front plus large. Trou noir vise un adversaire, ralentit les ennemis et les retient brièvement, avec libération et immunité ; les alliés sont épargnés.
+- Infiltrateur conserve son arrivée en territoire ennemi avec Colosse. Les bonus sont collectés au premier contact réel et les effets s’appliquent immédiatement au reste du mouvement.
+- Vortex lisible à son vrai rayon, indication des captures et priorité aux particules de collecte sous forte charge.
+- Audio créé au toucher, premier appui sonore qui active au lieu de couper, reprise après interruption et sons de rebond plus audibles sur petit haut-parleur. Aucun bouton ni son de test.
+- Guides français et anglais actualisés, historique des anciennes règles conservé. Les règles passent à **1.1.0** : les anciens liens ne sont pas rejoués silencieusement.
+- 77 tests de logique, 54 scénarios navigateur ; 600 parties terminées, 301 victoires Crème / 299 Café, moyenne **6 min 43 s** simulées (**1 min 41 s à ×4**).
+
 ## 1.2.0 — English / Français et son activé
 
 - Anglais par défaut et sélecteur English / Français en haut à droite, utilisable sur mobile.

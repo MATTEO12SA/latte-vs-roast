@@ -34,7 +34,15 @@ let toastMessage = '';
 let copyMessage = '';
 let openPanel: string | null = null;
 const renderer = new GameRenderer(el<HTMLCanvasElement>('game'));
-const audio = new GameAudio();
+const audio = new GameAudio(() => updateSoundButton());
+
+function updateSoundButton(): void {
+  const sound = el<HTMLButtonElement>('sound-button');
+  sound.innerHTML = icon(preferences.sound ? 'sound' : 'mute');
+  const label = text(preferences.sound && audio.hasInteraction ? 'Couper le son' : 'Activer le son');
+  sound.setAttribute('aria-label', label); sound.title = label;
+  sound.setAttribute('aria-pressed', String(preferences.sound));
+}
 
 function toast(message: string, duration = 4200): void {
   toastMessage = message;
@@ -48,11 +56,6 @@ function setAppearance(): void {
   el<HTMLInputElement>('volume').value = String(Math.round(preferences.volume * 100));
   el('volume-value').textContent = `${Math.round(preferences.volume * 100)} %`;
   el<HTMLInputElement>('reduced-effects').checked = preferences.reducedEffects;
-  const sound = el<HTMLButtonElement>('sound-button');
-  sound.innerHTML = icon(preferences.sound ? 'sound' : 'mute');
-  sound.setAttribute('aria-label', text(preferences.sound ? 'Couper le son' : 'Activer le son'));
-  sound.title = text(preferences.sound ? 'Couper le son' : 'Activer le son');
-  sound.setAttribute('aria-pressed', String(preferences.sound));
   audio.set(preferences.sound, preferences.volume);
 }
 function populateSettings(): void {
@@ -218,15 +221,24 @@ el('victory-replay').addEventListener('click', () => startMatch(state.config, st
 for (const id of ['new-button', 'victory-new']) el(id).addEventListener('click', () => startMatch(currentRecipe()));
 el<HTMLSelectElement>('speed').addEventListener('change', event => { speed = Number((event.target as HTMLSelectElement).value); });
 document.addEventListener('keydown', event => {
-  audio.unlock();
   const target = event.target as HTMLElement;
+  if (!target.closest('#sound-button')) void audio.unlock();
   if (event.code === 'Space' && !['INPUT', 'SELECT', 'TEXTAREA', 'BUTTON', 'A'].includes(target.tagName) && !el<HTMLDialogElement>('share-dialog').open) { event.preventDefault(); if (!state.winner) setPaused(!paused); }
   if (event.key === 'Escape') el('game-shell').classList.remove('expanded');
 });
-document.addEventListener('visibilitychange', () => { backgroundPaused = document.hidden; accumulator = 0; lastFrame = performance.now(); updatePause(); });
-document.addEventListener('pointerdown', () => audio.unlock());
-document.addEventListener('touchend', () => audio.unlock(), { passive: true });
-el('sound-button').addEventListener('click', () => { preferences.sound = !preferences.sound; setAppearance(); persistPreferences(); });
+document.addEventListener('visibilitychange', () => { backgroundPaused = document.hidden; accumulator = 0; lastFrame = performance.now(); audio.setBackground(document.hidden); updatePause(); });
+const unlockFromGesture = (event: Event) => { if (!(event.target as HTMLElement).closest('#sound-button')) void audio.unlock(); };
+document.addEventListener('pointerdown', unlockFromGesture);
+document.addEventListener('touchend', unlockFromGesture, { passive: true });
+document.addEventListener('click', unlockFromGesture);
+el('sound-button').addEventListener('click', () => {
+  // A first tap must unlock pending audio, not accidentally turn it off.
+  preferences.sound = !preferences.sound || !audio.hasInteraction;
+  setAppearance(); persistPreferences();
+  if (preferences.sound) void audio.unlock().then(ready => {
+    if (preferences.sound && !ready) toast(audio.supported ? 'Le navigateur bloque encore le son. Touchez à nouveau le bouton du son.' : 'Ce navigateur ne prend pas en charge le son du jeu.');
+  });
+});
 el('fullscreen-button').addEventListener('click', async () => {
   const shell = el('game-shell');
   try { if (document.fullscreenElement) await document.exitFullscreen(); else if (shell.requestFullscreen) await shell.requestFullscreen(); else shell.classList.toggle('expanded'); }

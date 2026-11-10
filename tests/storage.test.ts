@@ -76,12 +76,12 @@ describe('préférences et historique', () => {
     const records = loadRecords(); expect(records).toHaveLength(1); expect(records[0].history).toEqual(valid.history);
   });
 
-  it('garde les résultats de la première version même après évolution des règles', () => {
-    const legacy = { ...record(42), version: '1.0.0' };
+  it.each(['1.0.0', '1.0.1'])('garde les résultats %s même après évolution des règles', version => {
+    const legacy = { ...record(42), version };
     data.set(historyKey, JSON.stringify([legacy, record(43)]));
     const records = loadRecords();
     expect(records).toHaveLength(2);
-    expect(records[0]).toMatchObject({ id: '42', seed: 42, version: '1.0.0', winner: 'roast' });
+    expect(records[0]).toMatchObject({ id: '42', seed: 42, version, winner: 'roast' });
   });
 });
 

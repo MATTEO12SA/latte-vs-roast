@@ -20,7 +20,7 @@ export const savePreferences = (preferences: Preferences) => write(PREFS_KEY, pr
 export function loadRecords(): MatchRecord[] {
   const data = read(HISTORY_KEY);
   if (!Array.isArray(data)) return [];
-  return data.slice(0, 100).filter((v): v is MatchRecord => object(v) && typeof v.id === 'string' && typeof v.date === 'string' && !Number.isNaN(Date.parse(v.date)) && (v.version === RULES_VERSION || v.version === '1.0.0') && Number.isInteger(v.seed) && typeof v.ticks === 'number' && Number.isFinite(v.ticks) && v.ticks >= 0 && (v.winner === 'latte' || v.winner === 'roast') && object(v.config) && Array.isArray(v.history)).map(v => ({ ...v, config: normalizeConfig(v.config), history: v.history.filter(p => object(p) && typeof p.tick === 'number' && Number.isFinite(p.tick) && p.tick >= 0 && typeof p.latte === 'number' && Number.isFinite(p.latte) && p.latte >= 0 && p.latte <= 1).slice(-1800) }));
+  return data.slice(0, 100).filter((v): v is MatchRecord => object(v) && typeof v.id === 'string' && typeof v.date === 'string' && !Number.isNaN(Date.parse(v.date)) && [RULES_VERSION, '1.0.0', '1.0.1'].includes(v.version as string) && Number.isInteger(v.seed) && typeof v.ticks === 'number' && Number.isFinite(v.ticks) && v.ticks >= 0 && (v.winner === 'latte' || v.winner === 'roast') && object(v.config) && Array.isArray(v.history)).map(v => ({ ...v, config: normalizeConfig(v.config), history: v.history.filter(p => object(p) && typeof p.tick === 'number' && Number.isFinite(p.tick) && p.tick >= 0 && typeof p.latte === 'number' && Number.isFinite(p.latte) && p.latte >= 0 && p.latte <= 1).slice(-1800) }));
 }
 // Seule la dernière courbe est affichée : les anciens duels restent rejouables
 // avec leur graine, sans conserver cent séries de milliers de mesures.

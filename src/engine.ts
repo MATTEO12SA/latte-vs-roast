@@ -1,6 +1,6 @@
 import { BASE_RADIUS, BONUS_INFO, DEFAULT_CONFIG, MAX_BALLS, TICK_RATE, normalizeConfig } from './config';
 import type { Ball, BonusKind, Effect, MatchConfig, MatchEvent, MatchState, Team } from './types';
-import { circleOverlapsCell, segmentDistanceSquared, sweepCircleCell } from './physics';
+import { circleOverlapsCell, sweepPointCircle, sweepCircleCell } from './physics';
 import type { Hit } from './physics';
 
 const DT = 1 / TICK_RATE;
@@ -131,7 +131,7 @@ function syncBalls(state: MatchState, team?: Team): void {
 
 function newBall(state: MatchState, team: Team, x: number, y: number, role: Ball['role'], duration: number | null): Ball {
   const angle = (0.12 + random(state) * 0.28) * Math.PI + (random(state) < 0.5 ? Math.PI : 0);
-  const ball: Ball = { id: state.nextId++, team, x, y, vx: Math.cos(angle) * state.config.baseSpeed, vy: Math.sin(angle) * state.config.baseSpeed, radius: BASE_RADIUS, role, expiresAt: duration === null ? null : state.tick + duration * TICK_RATE, holeCooldownUntil: 0 };
+  const ball: Ball = { id: state.nextId++, team, x, y, vx: Math.cos(angle) * state.config.baseSpeed, vy: Math.sin(angle) * state.config.baseSpeed, radius: BASE_RADIUS, role, expiresAt: duration === null ? null : state.tick + duration * TICK_RATE, holeCooldownUntil: 0, capturedBy: null, capturedUntil: 0 };
   state.balls.push(ball);
   return ball;
 }
@@ -182,10 +182,21 @@ export function activateBonus(state: MatchState, kind: BonusKind, team: Team, ba
     for (let row = 0; row < state.config.rows; row++) for (let col = team === 'latte' ? 0 : state.config.columns / 2; col < (team === 'latte' ? state.config.columns / 2 : state.config.columns); col++) captureCell(state, col, row, team);
     addEffect(state, kind, team);
   } else if (kind === 'blackHole') {
+    // Target a nearby opponent rather than trapping the collecting camp.
+    let x = source.x, y = source.y, nearest = Infinity;
+    for (const enemy of state.balls) {
+      if (enemy.team === team) continue;
+      const dx = source.x - enemy.x, dy = source.y - enemy.y;
+      const distance = Math.hypot(dx, dy);
+      if (distance < nearest) {
+        nearest = distance;
+        x = clamp(enemy.x + (distance > EPS ? dx / distance : 1) * 1.5, 0.5, state.config.columns - 0.5);
+        y = clamp(enemy.y + (distance > EPS ? dy / distance : 0) * 1.5, 0.5, state.config.rows - 0.5);
+      }
+    }
     const existing = state.vortexes.find(v => v.team === team);
-    if (existing) { existing.x = source.x; existing.y = source.y; existing.expiresAt = state.tick + 6 * TICK_RATE; }
-    else state.vortexes.push({ id: state.nextId++, team, x: source.x, y: source.y, expiresAt: state.tick + 6 * TICK_RATE });
-    source.holeCooldownUntil = state.tick + 30;
+    if (existing) { existing.x = x; existing.y = y; existing.expiresAt = state.tick + 6 * TICK_RATE; }
+    else state.vortexes.push({ id: state.nextId++, team, x, y, expiresAt: state.tick + 6 * TICK_RATE });
     addEffect(state, kind, team);
   } else if (kind === 'infiltrator') {
     const existing = state.balls.find(b => b.team === team && b.role === 'infiltrator');
@@ -199,8 +210,14 @@ export function activateBonus(state: MatchState, kind: BonusKind, team: Team, ba
       if (candidates.length) {
         const index = candidates[Math.floor(random(state) * candidates.length)];
         const col = index % state.config.columns, row = Math.floor(index / state.config.columns);
-        captureCell(state, col, row, team);
-        newBall(state, team, col + 0.5, row + 0.5, 'infiltrator', 10);
+        const radius = attributes(state, team).radius;
+        const x = clamp(col + 0.5, radius + EPS, state.config.columns - radius - EPS);
+        const y = clamp(row + 0.5, radius + EPS, state.config.rows - radius - EPS);
+        // A giant reinforcement must land behind enemy lines too. Prepare its
+        // actual footprint rather than teleporting it home during syncBalls.
+        overlappingCells(state, x, y, radius + EPS, (c, r) => captureCell(state, c, r, team));
+        if (state.winner) return;
+        newBall(state, team, x, y, 'infiltrator', 10);
         addEffect(state, kind, team);
       }
     }
@@ -227,21 +244,6 @@ export function activateBonus(state: MatchState, kind: BonusKind, team: Team, ba
   syncBalls(state);
 }
 
-function collectAlong(state: MatchState, ball: Ball, x1: number, y1: number, x2: number, y2: number): void {
-  for (const pickup of [...state.pickups]) {
-    if (segmentDistanceSquared(pickup.x, pickup.y, x1, y1, x2, y2) <= (ball.radius + 0.32) ** 2) {
-      const index = state.pickups.findIndex(p => p.id === pickup.id);
-      if (index < 0) continue;
-      state.pickups.splice(index, 1);
-      const beforeX = ball.x, beforeY = ball.y;
-      activateBonus(state, pickup.kind, ball.team, ball.id);
-      // Teleportation (or clearance after growing) invalidates this segment.
-      // Objects on the abandoned route must wait for a real future contact.
-      if (Math.abs(ball.x - beforeX) > EPS || Math.abs(ball.y - beforeY) > EPS || state.winner) return;
-    }
-  }
-}
-
 function paintSegment(state: MatchState, ball: Ball, x1: number, y1: number, x2: number, y2: number): void {
   const minX = Math.max(0, Math.floor(Math.min(x1, x2) - ball.radius)), maxX = Math.min(state.config.columns - 1, Math.floor(Math.max(x1, x2) + ball.radius));
   const minY = Math.max(0, Math.floor(Math.min(y1, y2) - ball.radius)), maxY = Math.min(state.config.rows - 1, Math.floor(Math.max(y1, y2) + ball.radius));
@@ -250,29 +252,41 @@ function paintSegment(state: MatchState, ball: Ball, x1: number, y1: number, x2:
   }
 }
 
-function applyVortexes(state: MatchState, ball: Ball): void {
-  if (ball.holeCooldownUntil > state.tick) return;
+function applyVortexes(state: MatchState, ball: Ball): number {
+  if (ball.capturedBy !== null) {
+    const vortex = state.vortexes.find(v => v.id === ball.capturedBy);
+    if (vortex && ball.capturedUntil > state.tick && Math.hypot(vortex.x - ball.x, vortex.y - ball.y) < 3) return 0;
+    ball.capturedBy = null; ball.capturedUntil = 0;
+    const angle = ((ball.id * 2.399963229728653) + state.tick * 0.017) % (Math.PI * 2);
+    ball.vx = Math.cos(angle) * state.config.baseSpeed;
+    ball.vy = Math.sin(angle) * state.config.baseSpeed;
+    ball.holeCooldownUntil = state.tick + TICK_RATE;
+    return 1;
+  }
+  if (ball.holeCooldownUntil > state.tick) return 1;
+  let slowdown = 1;
   for (const vortex of state.vortexes) {
+    if (vortex.team === ball.team) continue;
     const dx = vortex.x - ball.x, dy = vortex.y - ball.y;
     const distance = Math.hypot(dx, dy);
     if (distance >= 3) continue;
     if (distance < Math.max(0.28, ball.radius * 0.4)) {
-      // Every encounter has a deterministic exit and one second of immunity.
-      const angle = ((ball.id * 2.399963229728653) + state.tick * 0.017) % (Math.PI * 2);
-      ball.vx = Math.cos(angle) * state.config.baseSpeed;
-      ball.vy = Math.sin(angle) * state.config.baseSpeed;
-      ball.holeCooldownUntil = state.tick + TICK_RATE;
-      break;
+      // A visible but brief capture, followed by a full second of immunity.
+      ball.capturedBy = vortex.id;
+      ball.capturedUntil = state.tick + Math.round(0.35 * TICK_RATE);
+      return 0;
     }
+    slowdown = 0.65;
     ball.vx += dx / Math.max(distance, EPS) * 36 * DT;
     ball.vy += dy / Math.max(distance, EPS) * 36 * DT;
   }
+  return slowdown;
 }
 
 function moveBall(state: MatchState, ball: Ball): void {
-  applyVortexes(state, ball);
+  const vortexSpeed = applyVortexes(state, ball);
   let attr = attributes(state, ball.team);
-  setSpeed(ball, attr.speed);
+  setSpeed(ball, attr.speed * vortexSpeed);
   let remaining = DT;
   for (let iteration = 0; iteration < 20 && remaining > 1e-10 && !state.winner; iteration++) {
     let time = remaining + 1;
@@ -300,13 +314,38 @@ function moveBall(state: MatchState, ball: Ball): void {
         if (hit) consider(hit, col, row);
       }
     }
+    // Pickups participate in the same first-event search as walls and cells.
+    // This applies a speed/radius change at contact, and never collects objects
+    // from the old trajectory after a teleport. ID only breaks exact ties.
+    let pickupHit: { time: number; id: number } | null = null;
+    for (const pickup of state.pickups) {
+      const pickupTime = sweepPointCircle(ball.x, ball.y, ball.vx, ball.vy, pickup.x, pickup.y, ball.radius + 0.32, remaining);
+      if (pickupTime !== null && (!pickupHit || pickupTime < pickupHit.time - EPS || (Math.abs(pickupTime - pickupHit.time) <= EPS && pickup.id < pickupHit.id))) pickupHit = { time: pickupTime, id: pickup.id };
+    }
+    const collect = pickupHit !== null && pickupHit.time <= time + EPS;
+    if (collect) time = pickupHit!.time;
     const x1 = ball.x, y1 = ball.y;
     const movedFor = Math.min(remaining, time);
     ball.x += ball.vx * movedFor; ball.y += ball.vy * movedFor;
     if (attr.ghost) paintSegment(state, ball, x1, y1, ball.x, ball.y);
     remaining -= movedFor;
+    if (collect) {
+      const index = state.pickups.findIndex(p => p.id === pickupHit!.id);
+      const [pickup] = state.pickups.splice(index, 1);
+      activateBonus(state, pickup.kind, ball.team, ball.id);
+      attr = attributes(state, ball.team);
+      setSpeed(ball, attr.speed * vortexSpeed);
+      continue;
+    }
     const hit = time <= movedFor + EPS;
     if (hit) {
+      if (cells.length && ball.radius > BASE_RADIUS * 1.5) {
+        // A giant sweeps a broad contact front; it doesn't merely collect more
+        // pickups. Unlike demolition this does not add a full 3×3 depth.
+        overlappingCells(state, ball.x, ball.y, ball.radius + 0.55, (col, row) => {
+          if (state.grid[row * state.config.columns + col] !== valueOf(ball.team) && !cells.some(c => c.col === col && c.row === row)) cells.push({ col, row });
+        });
+      }
       for (const cell of cells) {
         const reach = attr.wrecking ? 1 : 0;
         for (let row = cell.row - reach; row <= cell.row + reach; row++) for (let col = cell.col - reach; col <= cell.col + reach; col++) captureCell(state, col, row, ball.team);
@@ -321,7 +360,6 @@ function moveBall(state: MatchState, ball: Ball): void {
       if (wall || cells.length) emit(state, { type: 'bounce', team: ball.team, x: ball.x, y: ball.y });
       if (movedFor < 1e-10) remaining = Math.max(0, remaining - 1e-8);
     }
-    collectAlong(state, ball, x1, y1, ball.x, ball.y);
     attr = attributes(state, ball.team);
   }
   ball.x = clamp(ball.x, ball.radius, state.config.columns - ball.radius);

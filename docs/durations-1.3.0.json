@@ -1,0 +1,3109 @@
+{
+  "measuredOn": "2026-11-10",
+  "rulesVersion": "1.1.0",
+  "first": {
+    "summary": {
+      "version": "1.1.0",
+      "config": {
+        "columns": 18,
+        "rows": 24,
+        "baseSpeed": 11,
+        "winThreshold": 0.9,
+        "spawnSeconds": 2,
+        "enabledBonuses": [
+          "ghost",
+          "blackHole",
+          "tidalWave",
+          "speed",
+          "nitro",
+          "wreckingBall",
+          "colossus",
+          "infiltrator",
+          "trinity",
+          "wormhole",
+          "turret"
+        ]
+      },
+      "firstSeed": 1,
+      "count": 300,
+      "limitSeconds": 7200,
+      "completed": 300,
+      "censored": 0,
+      "completedMeanSeconds": 416.0918333333334,
+      "completedMedianSeconds": 336.71666666666664,
+      "completedP90Seconds": 823.7166666666667,
+      "completedP95Seconds": 1025.1416666666667,
+      "completedMinSeconds": 18.041666666666668,
+      "completedMaxSeconds": 1654.7583333333334,
+      "observedMeanAtLimitSeconds": 416.09183333333317,
+      "over10Minutes": 68,
+      "over20Minutes": 9,
+      "wins": {
+        "latte": 160,
+        "roast": 140
+      },
+      "runtimeSeconds": 45.869962099999995
+    },
+    "results": [
+      {
+        "seed": 1,
+        "seconds": 47.8,
+        "winner": "roast"
+      },
+      {
+        "seed": 2,
+        "seconds": 353.56666666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 3,
+        "seconds": 175.53333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 4,
+        "seconds": 134.19166666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 5,
+        "seconds": 94.76666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 6,
+        "seconds": 416.53333333333336,
+        "winner": "latte"
+      },
+      {
+        "seed": 7,
+        "seconds": 247.2,
+        "winner": "latte"
+      },
+      {
+        "seed": 8,
+        "seconds": 37.708333333333336,
+        "winner": "latte"
+      },
+      {
+        "seed": 9,
+        "seconds": 542.925,
+        "winner": "latte"
+      },
+      {
+        "seed": 10,
+        "seconds": 128.58333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 11,
+        "seconds": 61.31666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 12,
+        "seconds": 208.875,
+        "winner": "roast"
+      },
+      {
+        "seed": 13,
+        "seconds": 422.96666666666664,
+        "winner": "latte"
+      },
+      {
+        "seed": 14,
+        "seconds": 674.8916666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 15,
+        "seconds": 243.68333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 16,
+        "seconds": 93.175,
+        "winner": "roast"
+      },
+      {
+        "seed": 17,
+        "seconds": 26.658333333333335,
+        "winner": "latte"
+      },
+      {
+        "seed": 18,
+        "seconds": 1432.3916666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 19,
+        "seconds": 559.1416666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 20,
+        "seconds": 363.9916666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 21,
+        "seconds": 423.35,
+        "winner": "latte"
+      },
+      {
+        "seed": 22,
+        "seconds": 32.208333333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 23,
+        "seconds": 328.90833333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 24,
+        "seconds": 336.71666666666664,
+        "winner": "roast"
+      },
+      {
+        "seed": 25,
+        "seconds": 961.175,
+        "winner": "roast"
+      },
+      {
+        "seed": 26,
+        "seconds": 472.25,
+        "winner": "latte"
+      },
+      {
+        "seed": 27,
+        "seconds": 802.6833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 28,
+        "seconds": 171.45833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 29,
+        "seconds": 374.275,
+        "winner": "roast"
+      },
+      {
+        "seed": 30,
+        "seconds": 746.45,
+        "winner": "roast"
+      },
+      {
+        "seed": 31,
+        "seconds": 79.85833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 32,
+        "seconds": 442.23333333333335,
+        "winner": "roast"
+      },
+      {
+        "seed": 33,
+        "seconds": 98.15,
+        "winner": "roast"
+      },
+      {
+        "seed": 34,
+        "seconds": 884.95,
+        "winner": "roast"
+      },
+      {
+        "seed": 35,
+        "seconds": 562.025,
+        "winner": "roast"
+      },
+      {
+        "seed": 36,
+        "seconds": 354.0416666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 37,
+        "seconds": 35.141666666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 38,
+        "seconds": 539.4583333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 39,
+        "seconds": 204.18333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 40,
+        "seconds": 823.7166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 41,
+        "seconds": 488.65833333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 42,
+        "seconds": 287.34166666666664,
+        "winner": "latte"
+      },
+      {
+        "seed": 43,
+        "seconds": 455.05,
+        "winner": "latte"
+      },
+      {
+        "seed": 44,
+        "seconds": 86.08333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 45,
+        "seconds": 253.475,
+        "winner": "latte"
+      },
+      {
+        "seed": 46,
+        "seconds": 349.3,
+        "winner": "latte"
+      },
+      {
+        "seed": 47,
+        "seconds": 134.84166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 48,
+        "seconds": 888.25,
+        "winner": "latte"
+      },
+      {
+        "seed": 49,
+        "seconds": 491.15833333333336,
+        "winner": "latte"
+      },
+      {
+        "seed": 50,
+        "seconds": 758.6666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 51,
+        "seconds": 1003.3083333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 52,
+        "seconds": 603.6916666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 53,
+        "seconds": 516.2083333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 54,
+        "seconds": 248.36666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 55,
+        "seconds": 209.40833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 56,
+        "seconds": 517.1583333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 57,
+        "seconds": 245.85833333333332,
+        "winner": "roast"
+      },
+      {
+        "seed": 58,
+        "seconds": 524.4083333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 59,
+        "seconds": 597.7583333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 60,
+        "seconds": 350.55,
+        "winner": "roast"
+      },
+      {
+        "seed": 61,
+        "seconds": 236.7,
+        "winner": "roast"
+      },
+      {
+        "seed": 62,
+        "seconds": 765.4666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 63,
+        "seconds": 319.05833333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 64,
+        "seconds": 701.6916666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 65,
+        "seconds": 573.2583333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 66,
+        "seconds": 757.7916666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 67,
+        "seconds": 1238.925,
+        "winner": "roast"
+      },
+      {
+        "seed": 68,
+        "seconds": 653.4333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 69,
+        "seconds": 584.225,
+        "winner": "roast"
+      },
+      {
+        "seed": 70,
+        "seconds": 231.23333333333332,
+        "winner": "roast"
+      },
+      {
+        "seed": 71,
+        "seconds": 43.35,
+        "winner": "roast"
+      },
+      {
+        "seed": 72,
+        "seconds": 587.2916666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 73,
+        "seconds": 169.325,
+        "winner": "roast"
+      },
+      {
+        "seed": 74,
+        "seconds": 358.5083333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 75,
+        "seconds": 350.3,
+        "winner": "roast"
+      },
+      {
+        "seed": 76,
+        "seconds": 814.0166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 77,
+        "seconds": 365.875,
+        "winner": "latte"
+      },
+      {
+        "seed": 78,
+        "seconds": 680.3416666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 79,
+        "seconds": 152.61666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 80,
+        "seconds": 776.5666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 81,
+        "seconds": 1049.7583333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 82,
+        "seconds": 728.5416666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 83,
+        "seconds": 409.225,
+        "winner": "roast"
+      },
+      {
+        "seed": 84,
+        "seconds": 208.41666666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 85,
+        "seconds": 152.49166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 86,
+        "seconds": 203.225,
+        "winner": "latte"
+      },
+      {
+        "seed": 87,
+        "seconds": 348.56666666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 88,
+        "seconds": 199.675,
+        "winner": "latte"
+      },
+      {
+        "seed": 89,
+        "seconds": 334.21666666666664,
+        "winner": "roast"
+      },
+      {
+        "seed": 90,
+        "seconds": 502.925,
+        "winner": "roast"
+      },
+      {
+        "seed": 91,
+        "seconds": 215.2,
+        "winner": "roast"
+      },
+      {
+        "seed": 92,
+        "seconds": 200.70833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 93,
+        "seconds": 316.15833333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 94,
+        "seconds": 506.8,
+        "winner": "roast"
+      },
+      {
+        "seed": 95,
+        "seconds": 193.59166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 96,
+        "seconds": 371.725,
+        "winner": "latte"
+      },
+      {
+        "seed": 97,
+        "seconds": 32.916666666666664,
+        "winner": "latte"
+      },
+      {
+        "seed": 98,
+        "seconds": 94.275,
+        "winner": "latte"
+      },
+      {
+        "seed": 99,
+        "seconds": 241.69166666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 100,
+        "seconds": 86.49166666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 101,
+        "seconds": 306.9916666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 102,
+        "seconds": 144.56666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 103,
+        "seconds": 128.78333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 104,
+        "seconds": 570.1833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 105,
+        "seconds": 40.325,
+        "winner": "roast"
+      },
+      {
+        "seed": 106,
+        "seconds": 269.34166666666664,
+        "winner": "latte"
+      },
+      {
+        "seed": 107,
+        "seconds": 146.475,
+        "winner": "latte"
+      },
+      {
+        "seed": 108,
+        "seconds": 444.175,
+        "winner": "roast"
+      },
+      {
+        "seed": 109,
+        "seconds": 24.55,
+        "winner": "roast"
+      },
+      {
+        "seed": 110,
+        "seconds": 1175.1166666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 111,
+        "seconds": 55.38333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 112,
+        "seconds": 507.3666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 113,
+        "seconds": 173.5,
+        "winner": "latte"
+      },
+      {
+        "seed": 114,
+        "seconds": 1431.2416666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 115,
+        "seconds": 217.28333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 116,
+        "seconds": 652,
+        "winner": "latte"
+      },
+      {
+        "seed": 117,
+        "seconds": 452.025,
+        "winner": "roast"
+      },
+      {
+        "seed": 118,
+        "seconds": 1025.1416666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 119,
+        "seconds": 513.325,
+        "winner": "roast"
+      },
+      {
+        "seed": 120,
+        "seconds": 229.2,
+        "winner": "roast"
+      },
+      {
+        "seed": 121,
+        "seconds": 42.025,
+        "winner": "roast"
+      },
+      {
+        "seed": 122,
+        "seconds": 1485.7333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 123,
+        "seconds": 391.10833333333335,
+        "winner": "roast"
+      },
+      {
+        "seed": 124,
+        "seconds": 164.03333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 125,
+        "seconds": 389.53333333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 126,
+        "seconds": 228.58333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 127,
+        "seconds": 797.5666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 128,
+        "seconds": 767.35,
+        "winner": "latte"
+      },
+      {
+        "seed": 129,
+        "seconds": 119.00833333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 130,
+        "seconds": 261.55,
+        "winner": "latte"
+      },
+      {
+        "seed": 131,
+        "seconds": 131.1,
+        "winner": "latte"
+      },
+      {
+        "seed": 132,
+        "seconds": 84.05833333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 133,
+        "seconds": 474.4583333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 134,
+        "seconds": 821.6,
+        "winner": "latte"
+      },
+      {
+        "seed": 135,
+        "seconds": 74.3,
+        "winner": "roast"
+      },
+      {
+        "seed": 136,
+        "seconds": 591.8166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 137,
+        "seconds": 470.18333333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 138,
+        "seconds": 877.6583333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 139,
+        "seconds": 63.608333333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 140,
+        "seconds": 1009.4,
+        "winner": "latte"
+      },
+      {
+        "seed": 141,
+        "seconds": 341.73333333333335,
+        "winner": "latte"
+      },
+      {
+        "seed": 142,
+        "seconds": 308.64166666666665,
+        "winner": "roast"
+      },
+      {
+        "seed": 143,
+        "seconds": 1568.4083333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 144,
+        "seconds": 378.25,
+        "winner": "roast"
+      },
+      {
+        "seed": 145,
+        "seconds": 548.7166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 146,
+        "seconds": 87.1,
+        "winner": "latte"
+      },
+      {
+        "seed": 147,
+        "seconds": 130.25,
+        "winner": "roast"
+      },
+      {
+        "seed": 148,
+        "seconds": 152.23333333333332,
+        "winner": "roast"
+      },
+      {
+        "seed": 149,
+        "seconds": 99.88333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 150,
+        "seconds": 233.225,
+        "winner": "latte"
+      },
+      {
+        "seed": 151,
+        "seconds": 440.8666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 152,
+        "seconds": 507.9166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 153,
+        "seconds": 266.4916666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 154,
+        "seconds": 161.24166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 155,
+        "seconds": 459.1166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 156,
+        "seconds": 492.46666666666664,
+        "winner": "latte"
+      },
+      {
+        "seed": 157,
+        "seconds": 255.5,
+        "winner": "latte"
+      },
+      {
+        "seed": 158,
+        "seconds": 545.3583333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 159,
+        "seconds": 57.983333333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 160,
+        "seconds": 246.58333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 161,
+        "seconds": 209.83333333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 162,
+        "seconds": 155.025,
+        "winner": "latte"
+      },
+      {
+        "seed": 163,
+        "seconds": 176.64166666666668,
+        "winner": "roast"
+      },
+      {
+        "seed": 164,
+        "seconds": 65.16666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 165,
+        "seconds": 174.55,
+        "winner": "roast"
+      },
+      {
+        "seed": 166,
+        "seconds": 115.775,
+        "winner": "latte"
+      },
+      {
+        "seed": 167,
+        "seconds": 314.78333333333336,
+        "winner": "latte"
+      },
+      {
+        "seed": 168,
+        "seconds": 321.575,
+        "winner": "roast"
+      },
+      {
+        "seed": 169,
+        "seconds": 419.59166666666664,
+        "winner": "latte"
+      },
+      {
+        "seed": 170,
+        "seconds": 588,
+        "winner": "latte"
+      },
+      {
+        "seed": 171,
+        "seconds": 470.14166666666665,
+        "winner": "roast"
+      },
+      {
+        "seed": 172,
+        "seconds": 310.4583333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 173,
+        "seconds": 496.95,
+        "winner": "latte"
+      },
+      {
+        "seed": 174,
+        "seconds": 724.0833333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 175,
+        "seconds": 674.875,
+        "winner": "roast"
+      },
+      {
+        "seed": 176,
+        "seconds": 702.45,
+        "winner": "roast"
+      },
+      {
+        "seed": 177,
+        "seconds": 158.85833333333332,
+        "winner": "roast"
+      },
+      {
+        "seed": 178,
+        "seconds": 172.69166666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 179,
+        "seconds": 149.70833333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 180,
+        "seconds": 422.6166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 181,
+        "seconds": 270.65,
+        "winner": "latte"
+      },
+      {
+        "seed": 182,
+        "seconds": 649.9083333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 183,
+        "seconds": 703.4833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 184,
+        "seconds": 363.7583333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 185,
+        "seconds": 387.76666666666665,
+        "winner": "roast"
+      },
+      {
+        "seed": 186,
+        "seconds": 188.675,
+        "winner": "roast"
+      },
+      {
+        "seed": 187,
+        "seconds": 102.6,
+        "winner": "roast"
+      },
+      {
+        "seed": 188,
+        "seconds": 710.5,
+        "winner": "roast"
+      },
+      {
+        "seed": 189,
+        "seconds": 537.7666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 190,
+        "seconds": 511.65,
+        "winner": "roast"
+      },
+      {
+        "seed": 191,
+        "seconds": 240.54166666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 192,
+        "seconds": 291.48333333333335,
+        "winner": "latte"
+      },
+      {
+        "seed": 193,
+        "seconds": 280.23333333333335,
+        "winner": "latte"
+      },
+      {
+        "seed": 194,
+        "seconds": 422.45,
+        "winner": "roast"
+      },
+      {
+        "seed": 195,
+        "seconds": 499.55833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 196,
+        "seconds": 576.7833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 197,
+        "seconds": 859.6,
+        "winner": "roast"
+      },
+      {
+        "seed": 198,
+        "seconds": 940.9833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 199,
+        "seconds": 342.78333333333336,
+        "winner": "latte"
+      },
+      {
+        "seed": 200,
+        "seconds": 187.95,
+        "winner": "roast"
+      },
+      {
+        "seed": 201,
+        "seconds": 329.1166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 202,
+        "seconds": 694.6416666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 203,
+        "seconds": 480.65833333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 204,
+        "seconds": 342.51666666666665,
+        "winner": "roast"
+      },
+      {
+        "seed": 205,
+        "seconds": 242.425,
+        "winner": "latte"
+      },
+      {
+        "seed": 206,
+        "seconds": 1079.425,
+        "winner": "roast"
+      },
+      {
+        "seed": 207,
+        "seconds": 867.4666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 208,
+        "seconds": 144.74166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 209,
+        "seconds": 674.025,
+        "winner": "latte"
+      },
+      {
+        "seed": 210,
+        "seconds": 656.6666666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 211,
+        "seconds": 935.6833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 212,
+        "seconds": 206.14166666666668,
+        "winner": "latte"
+      },
+      {
+        "seed": 213,
+        "seconds": 205.60833333333332,
+        "winner": "latte"
+      },
+      {
+        "seed": 214,
+        "seconds": 467.2083333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 215,
+        "seconds": 296.40833333333336,
+        "winner": "latte"
+      },
+      {
+        "seed": 216,
+        "seconds": 185.5,
+        "winner": "latte"
+      },
+      {
+        "seed": 217,
+        "seconds": 163.38333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 218,
+        "seconds": 254.09166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 219,
+        "seconds": 236.3,
+        "winner": "roast"
+      },
+      {
+        "seed": 220,
+        "seconds": 409.4583333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 221,
+        "seconds": 627.5083333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 222,
+        "seconds": 698.8416666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 223,
+        "seconds": 1188.2583333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 224,
+        "seconds": 68.5,
+        "winner": "roast"
+      },
+      {
+        "seed": 225,
+        "seconds": 18.041666666666668,
+        "winner": "latte"
+      },
+      {
+        "seed": 226,
+        "seconds": 260.35833333333335,
+        "winner": "latte"
+      },
+      {
+        "seed": 227,
+        "seconds": 755.5833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 228,
+        "seconds": 1637.6083333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 229,
+        "seconds": 126.29166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 230,
+        "seconds": 186.275,
+        "winner": "roast"
+      },
+      {
+        "seed": 231,
+        "seconds": 229.9,
+        "winner": "roast"
+      },
+      {
+        "seed": 232,
+        "seconds": 639.5166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 233,
+        "seconds": 93.175,
+        "winner": "roast"
+      },
+      {
+        "seed": 234,
+        "seconds": 1404.75,
+        "winner": "roast"
+      },
+      {
+        "seed": 235,
+        "seconds": 503.59166666666664,
+        "winner": "roast"
+      },
+      {
+        "seed": 236,
+        "seconds": 64.15,
+        "winner": "latte"
+      },
+      {
+        "seed": 237,
+        "seconds": 1005.4916666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 238,
+        "seconds": 484.3833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 239,
+        "seconds": 58.63333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 240,
+        "seconds": 283.8333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 241,
+        "seconds": 87.6,
+        "winner": "roast"
+      },
+      {
+        "seed": 242,
+        "seconds": 491.3666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 243,
+        "seconds": 330.85,
+        "winner": "roast"
+      },
+      {
+        "seed": 244,
+        "seconds": 465.7416666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 245,
+        "seconds": 111.86666666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 246,
+        "seconds": 276.425,
+        "winner": "latte"
+      },
+      {
+        "seed": 247,
+        "seconds": 862.475,
+        "winner": "latte"
+      },
+      {
+        "seed": 248,
+        "seconds": 305.8833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 249,
+        "seconds": 425.4916666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 250,
+        "seconds": 271.875,
+        "winner": "latte"
+      },
+      {
+        "seed": 251,
+        "seconds": 1037.55,
+        "winner": "roast"
+      },
+      {
+        "seed": 252,
+        "seconds": 949.95,
+        "winner": "latte"
+      },
+      {
+        "seed": 253,
+        "seconds": 325.8333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 254,
+        "seconds": 235.875,
+        "winner": "latte"
+      },
+      {
+        "seed": 255,
+        "seconds": 216.35,
+        "winner": "latte"
+      },
+      {
+        "seed": 256,
+        "seconds": 758.7083333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 257,
+        "seconds": 671.0166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 258,
+        "seconds": 463.5833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 259,
+        "seconds": 72.275,
+        "winner": "roast"
+      },
+      {
+        "seed": 260,
+        "seconds": 367.80833333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 261,
+        "seconds": 372.5833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 262,
+        "seconds": 90.775,
+        "winner": "latte"
+      },
+      {
+        "seed": 263,
+        "seconds": 173.81666666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 264,
+        "seconds": 790.55,
+        "winner": "latte"
+      },
+      {
+        "seed": 265,
+        "seconds": 488.7083333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 266,
+        "seconds": 83.48333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 267,
+        "seconds": 175.975,
+        "winner": "roast"
+      },
+      {
+        "seed": 268,
+        "seconds": 130.26666666666668,
+        "winner": "roast"
+      },
+      {
+        "seed": 269,
+        "seconds": 231.89166666666668,
+        "winner": "roast"
+      },
+      {
+        "seed": 270,
+        "seconds": 628.5583333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 271,
+        "seconds": 323.55833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 272,
+        "seconds": 206.63333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 273,
+        "seconds": 100.55833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 274,
+        "seconds": 126.96666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 275,
+        "seconds": 169.9,
+        "winner": "latte"
+      },
+      {
+        "seed": 276,
+        "seconds": 253.59166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 277,
+        "seconds": 203.60833333333332,
+        "winner": "latte"
+      },
+      {
+        "seed": 278,
+        "seconds": 648.4666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 279,
+        "seconds": 897.2333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 280,
+        "seconds": 193.225,
+        "winner": "roast"
+      },
+      {
+        "seed": 281,
+        "seconds": 225.46666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 282,
+        "seconds": 501.275,
+        "winner": "roast"
+      },
+      {
+        "seed": 283,
+        "seconds": 357.71666666666664,
+        "winner": "roast"
+      },
+      {
+        "seed": 284,
+        "seconds": 530.4083333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 285,
+        "seconds": 204.70833333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 286,
+        "seconds": 387.2916666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 287,
+        "seconds": 223.55,
+        "winner": "latte"
+      },
+      {
+        "seed": 288,
+        "seconds": 408.1166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 289,
+        "seconds": 1654.7583333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 290,
+        "seconds": 69.86666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 291,
+        "seconds": 95.41666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 292,
+        "seconds": 624.9083333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 293,
+        "seconds": 1259.2416666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 294,
+        "seconds": 166.40833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 295,
+        "seconds": 1128.7166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 296,
+        "seconds": 688.0333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 297,
+        "seconds": 54.55833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 298,
+        "seconds": 195.19166666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 299,
+        "seconds": 63.875,
+        "winner": "roast"
+      },
+      {
+        "seed": 300,
+        "seconds": 131.24166666666667,
+        "winner": "latte"
+      }
+    ]
+  },
+  "validation": {
+    "summary": {
+      "version": "1.1.0",
+      "config": {
+        "columns": 18,
+        "rows": 24,
+        "baseSpeed": 11,
+        "winThreshold": 0.9,
+        "spawnSeconds": 2,
+        "enabledBonuses": [
+          "ghost",
+          "blackHole",
+          "tidalWave",
+          "speed",
+          "nitro",
+          "wreckingBall",
+          "colossus",
+          "infiltrator",
+          "trinity",
+          "wormhole",
+          "turret"
+        ]
+      },
+      "firstSeed": 10001,
+      "count": 300,
+      "limitSeconds": 7200,
+      "completed": 300,
+      "censored": 0,
+      "completedMeanSeconds": 389.0945277777777,
+      "completedMedianSeconds": 287.35,
+      "completedP90Seconds": 822.2583333333333,
+      "completedP95Seconds": 1077.9,
+      "completedMinSeconds": 19.158333333333335,
+      "completedMaxSeconds": 2232.625,
+      "observedMeanAtLimitSeconds": 389.0945277777777,
+      "over10Minutes": 61,
+      "over20Minutes": 10,
+      "wins": {
+        "latte": 141,
+        "roast": 159
+      },
+      "runtimeSeconds": 25.5488833
+    },
+    "results": [
+      {
+        "seed": 10001,
+        "seconds": 184.8,
+        "winner": "roast"
+      },
+      {
+        "seed": 10002,
+        "seconds": 463.90833333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 10003,
+        "seconds": 218.44166666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 10004,
+        "seconds": 902.1583333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10005,
+        "seconds": 203.375,
+        "winner": "latte"
+      },
+      {
+        "seed": 10006,
+        "seconds": 19.9,
+        "winner": "roast"
+      },
+      {
+        "seed": 10007,
+        "seconds": 112.20833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10008,
+        "seconds": 1014.8166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10009,
+        "seconds": 504.175,
+        "winner": "roast"
+      },
+      {
+        "seed": 10010,
+        "seconds": 771.1666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10011,
+        "seconds": 105.8,
+        "winner": "latte"
+      },
+      {
+        "seed": 10012,
+        "seconds": 49.94166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10013,
+        "seconds": 221.65,
+        "winner": "roast"
+      },
+      {
+        "seed": 10014,
+        "seconds": 589.9,
+        "winner": "roast"
+      },
+      {
+        "seed": 10015,
+        "seconds": 67.70833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10016,
+        "seconds": 283.325,
+        "winner": "latte"
+      },
+      {
+        "seed": 10017,
+        "seconds": 40.43333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10018,
+        "seconds": 1449.9583333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10019,
+        "seconds": 198.85,
+        "winner": "latte"
+      },
+      {
+        "seed": 10020,
+        "seconds": 329.23333333333335,
+        "winner": "roast"
+      },
+      {
+        "seed": 10021,
+        "seconds": 132.80833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10022,
+        "seconds": 37.61666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10023,
+        "seconds": 153.95833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10024,
+        "seconds": 117.68333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10025,
+        "seconds": 566.2333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10026,
+        "seconds": 38.7,
+        "winner": "roast"
+      },
+      {
+        "seed": 10027,
+        "seconds": 37.141666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10028,
+        "seconds": 110.08333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10029,
+        "seconds": 669.6083333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10030,
+        "seconds": 109.35,
+        "winner": "latte"
+      },
+      {
+        "seed": 10031,
+        "seconds": 128.575,
+        "winner": "latte"
+      },
+      {
+        "seed": 10032,
+        "seconds": 344.51666666666665,
+        "winner": "latte"
+      },
+      {
+        "seed": 10033,
+        "seconds": 226.8,
+        "winner": "roast"
+      },
+      {
+        "seed": 10034,
+        "seconds": 475.93333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10035,
+        "seconds": 214.53333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10036,
+        "seconds": 329.025,
+        "winner": "latte"
+      },
+      {
+        "seed": 10037,
+        "seconds": 42.84166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10038,
+        "seconds": 781.15,
+        "winner": "latte"
+      },
+      {
+        "seed": 10039,
+        "seconds": 1143.7,
+        "winner": "roast"
+      },
+      {
+        "seed": 10040,
+        "seconds": 1158.5833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10041,
+        "seconds": 302.93333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10042,
+        "seconds": 84.30833333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 10043,
+        "seconds": 147.71666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10044,
+        "seconds": 179.01666666666668,
+        "winner": "roast"
+      },
+      {
+        "seed": 10045,
+        "seconds": 490.475,
+        "winner": "roast"
+      },
+      {
+        "seed": 10046,
+        "seconds": 286,
+        "winner": "roast"
+      },
+      {
+        "seed": 10047,
+        "seconds": 59.6,
+        "winner": "latte"
+      },
+      {
+        "seed": 10048,
+        "seconds": 188.65,
+        "winner": "roast"
+      },
+      {
+        "seed": 10049,
+        "seconds": 273.03333333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 10050,
+        "seconds": 519.325,
+        "winner": "roast"
+      },
+      {
+        "seed": 10051,
+        "seconds": 740.675,
+        "winner": "latte"
+      },
+      {
+        "seed": 10052,
+        "seconds": 254.225,
+        "winner": "latte"
+      },
+      {
+        "seed": 10053,
+        "seconds": 465.2916666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10054,
+        "seconds": 299.0833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10055,
+        "seconds": 65.34166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10056,
+        "seconds": 194.71666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10057,
+        "seconds": 639.925,
+        "winner": "roast"
+      },
+      {
+        "seed": 10058,
+        "seconds": 595.2416666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10059,
+        "seconds": 469.7416666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10060,
+        "seconds": 129.15,
+        "winner": "latte"
+      },
+      {
+        "seed": 10061,
+        "seconds": 137.56666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10062,
+        "seconds": 294.575,
+        "winner": "roast"
+      },
+      {
+        "seed": 10063,
+        "seconds": 364.525,
+        "winner": "latte"
+      },
+      {
+        "seed": 10064,
+        "seconds": 217.66666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10065,
+        "seconds": 707.525,
+        "winner": "latte"
+      },
+      {
+        "seed": 10066,
+        "seconds": 19.158333333333335,
+        "winner": "roast"
+      },
+      {
+        "seed": 10067,
+        "seconds": 923.7083333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10068,
+        "seconds": 421.4,
+        "winner": "latte"
+      },
+      {
+        "seed": 10069,
+        "seconds": 132.04166666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10070,
+        "seconds": 378.14166666666665,
+        "winner": "roast"
+      },
+      {
+        "seed": 10071,
+        "seconds": 133.375,
+        "winner": "roast"
+      },
+      {
+        "seed": 10072,
+        "seconds": 513.1666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10073,
+        "seconds": 121.775,
+        "winner": "roast"
+      },
+      {
+        "seed": 10074,
+        "seconds": 356.0833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10075,
+        "seconds": 64.6,
+        "winner": "latte"
+      },
+      {
+        "seed": 10076,
+        "seconds": 153.24166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10077,
+        "seconds": 1062.325,
+        "winner": "roast"
+      },
+      {
+        "seed": 10078,
+        "seconds": 1077.9,
+        "winner": "roast"
+      },
+      {
+        "seed": 10079,
+        "seconds": 251.6,
+        "winner": "latte"
+      },
+      {
+        "seed": 10080,
+        "seconds": 158.23333333333332,
+        "winner": "roast"
+      },
+      {
+        "seed": 10081,
+        "seconds": 1555.0833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10082,
+        "seconds": 319.55833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10083,
+        "seconds": 601.5166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10084,
+        "seconds": 167.78333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10085,
+        "seconds": 258.96666666666664,
+        "winner": "latte"
+      },
+      {
+        "seed": 10086,
+        "seconds": 1821.5333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10087,
+        "seconds": 704.525,
+        "winner": "roast"
+      },
+      {
+        "seed": 10088,
+        "seconds": 308.35,
+        "winner": "roast"
+      },
+      {
+        "seed": 10089,
+        "seconds": 214.2,
+        "winner": "latte"
+      },
+      {
+        "seed": 10090,
+        "seconds": 305.75,
+        "winner": "latte"
+      },
+      {
+        "seed": 10091,
+        "seconds": 682.4916666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10092,
+        "seconds": 479.53333333333336,
+        "winner": "latte"
+      },
+      {
+        "seed": 10093,
+        "seconds": 264.2,
+        "winner": "latte"
+      },
+      {
+        "seed": 10094,
+        "seconds": 117.45833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10095,
+        "seconds": 32.875,
+        "winner": "roast"
+      },
+      {
+        "seed": 10096,
+        "seconds": 1268.8666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10097,
+        "seconds": 732.5,
+        "winner": "latte"
+      },
+      {
+        "seed": 10098,
+        "seconds": 822.2583333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10099,
+        "seconds": 56.13333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10100,
+        "seconds": 803.7333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10101,
+        "seconds": 936.5583333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10102,
+        "seconds": 680.625,
+        "winner": "roast"
+      },
+      {
+        "seed": 10103,
+        "seconds": 137.1,
+        "winner": "latte"
+      },
+      {
+        "seed": 10104,
+        "seconds": 645.5333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10105,
+        "seconds": 476.23333333333335,
+        "winner": "latte"
+      },
+      {
+        "seed": 10106,
+        "seconds": 313.5,
+        "winner": "latte"
+      },
+      {
+        "seed": 10107,
+        "seconds": 256.025,
+        "winner": "roast"
+      },
+      {
+        "seed": 10108,
+        "seconds": 255.89166666666668,
+        "winner": "roast"
+      },
+      {
+        "seed": 10109,
+        "seconds": 180.6,
+        "winner": "roast"
+      },
+      {
+        "seed": 10110,
+        "seconds": 58.03333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10111,
+        "seconds": 181.44166666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 10112,
+        "seconds": 429.675,
+        "winner": "roast"
+      },
+      {
+        "seed": 10113,
+        "seconds": 65.34166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10114,
+        "seconds": 493.40833333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 10115,
+        "seconds": 931.25,
+        "winner": "roast"
+      },
+      {
+        "seed": 10116,
+        "seconds": 65.09166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10117,
+        "seconds": 360.65833333333336,
+        "winner": "latte"
+      },
+      {
+        "seed": 10118,
+        "seconds": 254.975,
+        "winner": "roast"
+      },
+      {
+        "seed": 10119,
+        "seconds": 28.283333333333335,
+        "winner": "roast"
+      },
+      {
+        "seed": 10120,
+        "seconds": 147.75,
+        "winner": "roast"
+      },
+      {
+        "seed": 10121,
+        "seconds": 166.88333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10122,
+        "seconds": 132.175,
+        "winner": "latte"
+      },
+      {
+        "seed": 10123,
+        "seconds": 370.94166666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10124,
+        "seconds": 508.0833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10125,
+        "seconds": 72.46666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10126,
+        "seconds": 323.44166666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 10127,
+        "seconds": 284.15,
+        "winner": "roast"
+      },
+      {
+        "seed": 10128,
+        "seconds": 137.51666666666668,
+        "winner": "roast"
+      },
+      {
+        "seed": 10129,
+        "seconds": 301.15,
+        "winner": "latte"
+      },
+      {
+        "seed": 10130,
+        "seconds": 735.95,
+        "winner": "roast"
+      },
+      {
+        "seed": 10131,
+        "seconds": 489.19166666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10132,
+        "seconds": 228.775,
+        "winner": "latte"
+      },
+      {
+        "seed": 10133,
+        "seconds": 115.65833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10134,
+        "seconds": 133.7,
+        "winner": "roast"
+      },
+      {
+        "seed": 10135,
+        "seconds": 98.23333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10136,
+        "seconds": 672.0833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10137,
+        "seconds": 150.85833333333332,
+        "winner": "roast"
+      },
+      {
+        "seed": 10138,
+        "seconds": 1320.4666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10139,
+        "seconds": 1172.25,
+        "winner": "roast"
+      },
+      {
+        "seed": 10140,
+        "seconds": 197.05833333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 10141,
+        "seconds": 204.025,
+        "winner": "roast"
+      },
+      {
+        "seed": 10142,
+        "seconds": 268.64166666666665,
+        "winner": "latte"
+      },
+      {
+        "seed": 10143,
+        "seconds": 780.225,
+        "winner": "roast"
+      },
+      {
+        "seed": 10144,
+        "seconds": 147.41666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10145,
+        "seconds": 210.59166666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10146,
+        "seconds": 113.225,
+        "winner": "roast"
+      },
+      {
+        "seed": 10147,
+        "seconds": 436.6333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10148,
+        "seconds": 182.8,
+        "winner": "roast"
+      },
+      {
+        "seed": 10149,
+        "seconds": 783.5583333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10150,
+        "seconds": 355.825,
+        "winner": "latte"
+      },
+      {
+        "seed": 10151,
+        "seconds": 558.6166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10152,
+        "seconds": 448.2083333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10153,
+        "seconds": 253.33333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10154,
+        "seconds": 219.46666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10155,
+        "seconds": 80.1,
+        "winner": "latte"
+      },
+      {
+        "seed": 10156,
+        "seconds": 625.3,
+        "winner": "roast"
+      },
+      {
+        "seed": 10157,
+        "seconds": 249.575,
+        "winner": "latte"
+      },
+      {
+        "seed": 10158,
+        "seconds": 56.2,
+        "winner": "roast"
+      },
+      {
+        "seed": 10159,
+        "seconds": 221.21666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10160,
+        "seconds": 313.51666666666665,
+        "winner": "latte"
+      },
+      {
+        "seed": 10161,
+        "seconds": 290.65,
+        "winner": "roast"
+      },
+      {
+        "seed": 10162,
+        "seconds": 445.775,
+        "winner": "latte"
+      },
+      {
+        "seed": 10163,
+        "seconds": 142.85833333333332,
+        "winner": "latte"
+      },
+      {
+        "seed": 10164,
+        "seconds": 631.625,
+        "winner": "latte"
+      },
+      {
+        "seed": 10165,
+        "seconds": 229.79166666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10166,
+        "seconds": 100.15,
+        "winner": "roast"
+      },
+      {
+        "seed": 10167,
+        "seconds": 88.85833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10168,
+        "seconds": 913.6,
+        "winner": "roast"
+      },
+      {
+        "seed": 10169,
+        "seconds": 181.4,
+        "winner": "roast"
+      },
+      {
+        "seed": 10170,
+        "seconds": 424.4916666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10171,
+        "seconds": 309.81666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10172,
+        "seconds": 545.95,
+        "winner": "latte"
+      },
+      {
+        "seed": 10173,
+        "seconds": 145.00833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10174,
+        "seconds": 19.608333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10175,
+        "seconds": 568.075,
+        "winner": "roast"
+      },
+      {
+        "seed": 10176,
+        "seconds": 36.50833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10177,
+        "seconds": 187.66666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10178,
+        "seconds": 151.575,
+        "winner": "roast"
+      },
+      {
+        "seed": 10179,
+        "seconds": 160.91666666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 10180,
+        "seconds": 340.39166666666665,
+        "winner": "latte"
+      },
+      {
+        "seed": 10181,
+        "seconds": 545.5666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10182,
+        "seconds": 133.70833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10183,
+        "seconds": 265.46666666666664,
+        "winner": "latte"
+      },
+      {
+        "seed": 10184,
+        "seconds": 234.99166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10185,
+        "seconds": 526,
+        "winner": "latte"
+      },
+      {
+        "seed": 10186,
+        "seconds": 655.4833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10187,
+        "seconds": 125.625,
+        "winner": "latte"
+      },
+      {
+        "seed": 10188,
+        "seconds": 576.275,
+        "winner": "latte"
+      },
+      {
+        "seed": 10189,
+        "seconds": 332.84166666666664,
+        "winner": "roast"
+      },
+      {
+        "seed": 10190,
+        "seconds": 771.625,
+        "winner": "roast"
+      },
+      {
+        "seed": 10191,
+        "seconds": 1627.4583333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10192,
+        "seconds": 248.14166666666668,
+        "winner": "latte"
+      },
+      {
+        "seed": 10193,
+        "seconds": 602.1083333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10194,
+        "seconds": 563.2666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10195,
+        "seconds": 222.125,
+        "winner": "latte"
+      },
+      {
+        "seed": 10196,
+        "seconds": 189.66666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10197,
+        "seconds": 473.90833333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 10198,
+        "seconds": 140.51666666666668,
+        "winner": "latte"
+      },
+      {
+        "seed": 10199,
+        "seconds": 198.09166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10200,
+        "seconds": 149.975,
+        "winner": "roast"
+      },
+      {
+        "seed": 10201,
+        "seconds": 1615.6666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10202,
+        "seconds": 226.28333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10203,
+        "seconds": 330.3333333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10204,
+        "seconds": 406.2583333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10205,
+        "seconds": 268.725,
+        "winner": "roast"
+      },
+      {
+        "seed": 10206,
+        "seconds": 72.725,
+        "winner": "roast"
+      },
+      {
+        "seed": 10207,
+        "seconds": 160.5,
+        "winner": "latte"
+      },
+      {
+        "seed": 10208,
+        "seconds": 699.7083333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10209,
+        "seconds": 561.2833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10210,
+        "seconds": 138.26666666666668,
+        "winner": "roast"
+      },
+      {
+        "seed": 10211,
+        "seconds": 21.958333333333332,
+        "winner": "roast"
+      },
+      {
+        "seed": 10212,
+        "seconds": 107.93333333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 10213,
+        "seconds": 287.35,
+        "winner": "latte"
+      },
+      {
+        "seed": 10214,
+        "seconds": 183.08333333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 10215,
+        "seconds": 901.5416666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 10216,
+        "seconds": 250.375,
+        "winner": "latte"
+      },
+      {
+        "seed": 10217,
+        "seconds": 159.14166666666668,
+        "winner": "latte"
+      },
+      {
+        "seed": 10218,
+        "seconds": 88.175,
+        "winner": "roast"
+      },
+      {
+        "seed": 10219,
+        "seconds": 255.58333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10220,
+        "seconds": 62.55833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10221,
+        "seconds": 1296.8833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10222,
+        "seconds": 1058.0083333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10223,
+        "seconds": 896.9666666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10224,
+        "seconds": 110.975,
+        "winner": "latte"
+      },
+      {
+        "seed": 10225,
+        "seconds": 2232.625,
+        "winner": "roast"
+      },
+      {
+        "seed": 10226,
+        "seconds": 201.04166666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10227,
+        "seconds": 102.325,
+        "winner": "latte"
+      },
+      {
+        "seed": 10228,
+        "seconds": 844.6416666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10229,
+        "seconds": 480.025,
+        "winner": "latte"
+      },
+      {
+        "seed": 10230,
+        "seconds": 569.3333333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 10231,
+        "seconds": 432.9916666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10232,
+        "seconds": 77.64166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10233,
+        "seconds": 651.4166666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10234,
+        "seconds": 424.0083333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10235,
+        "seconds": 559.7833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10236,
+        "seconds": 400.76666666666665,
+        "winner": "roast"
+      },
+      {
+        "seed": 10237,
+        "seconds": 314.975,
+        "winner": "roast"
+      },
+      {
+        "seed": 10238,
+        "seconds": 368.31666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10239,
+        "seconds": 360.90833333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 10240,
+        "seconds": 256.6666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10241,
+        "seconds": 694.425,
+        "winner": "latte"
+      },
+      {
+        "seed": 10242,
+        "seconds": 162.89166666666668,
+        "winner": "roast"
+      },
+      {
+        "seed": 10243,
+        "seconds": 623.275,
+        "winner": "roast"
+      },
+      {
+        "seed": 10244,
+        "seconds": 288.40833333333336,
+        "winner": "latte"
+      },
+      {
+        "seed": 10245,
+        "seconds": 105.40833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10246,
+        "seconds": 138.725,
+        "winner": "latte"
+      },
+      {
+        "seed": 10247,
+        "seconds": 396.475,
+        "winner": "latte"
+      },
+      {
+        "seed": 10248,
+        "seconds": 142.08333333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 10249,
+        "seconds": 338.55,
+        "winner": "latte"
+      },
+      {
+        "seed": 10250,
+        "seconds": 746.05,
+        "winner": "roast"
+      },
+      {
+        "seed": 10251,
+        "seconds": 834.7916666666666,
+        "winner": "latte"
+      },
+      {
+        "seed": 10252,
+        "seconds": 100.50833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10253,
+        "seconds": 369.6333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10254,
+        "seconds": 146.64166666666668,
+        "winner": "roast"
+      },
+      {
+        "seed": 10255,
+        "seconds": 181.23333333333332,
+        "winner": "roast"
+      },
+      {
+        "seed": 10256,
+        "seconds": 620.0833333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 10257,
+        "seconds": 722.3416666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10258,
+        "seconds": 326.18333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10259,
+        "seconds": 310.53333333333336,
+        "winner": "latte"
+      },
+      {
+        "seed": 10260,
+        "seconds": 395.68333333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 10261,
+        "seconds": 339.03333333333336,
+        "winner": "latte"
+      },
+      {
+        "seed": 10262,
+        "seconds": 279.25,
+        "winner": "latte"
+      },
+      {
+        "seed": 10263,
+        "seconds": 1099.8083333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10264,
+        "seconds": 129.58333333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10265,
+        "seconds": 499.9583333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10266,
+        "seconds": 323.65,
+        "winner": "roast"
+      },
+      {
+        "seed": 10267,
+        "seconds": 73.625,
+        "winner": "latte"
+      },
+      {
+        "seed": 10268,
+        "seconds": 401.4916666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10269,
+        "seconds": 563.8916666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10270,
+        "seconds": 322.35,
+        "winner": "latte"
+      },
+      {
+        "seed": 10271,
+        "seconds": 357.06666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10272,
+        "seconds": 488.14166666666665,
+        "winner": "roast"
+      },
+      {
+        "seed": 10273,
+        "seconds": 457.425,
+        "winner": "latte"
+      },
+      {
+        "seed": 10274,
+        "seconds": 298.7,
+        "winner": "latte"
+      },
+      {
+        "seed": 10275,
+        "seconds": 164.525,
+        "winner": "latte"
+      },
+      {
+        "seed": 10276,
+        "seconds": 131.38333333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10277,
+        "seconds": 190.5,
+        "winner": "roast"
+      },
+      {
+        "seed": 10278,
+        "seconds": 155.09166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10279,
+        "seconds": 79.65,
+        "winner": "latte"
+      },
+      {
+        "seed": 10280,
+        "seconds": 1231.3083333333334,
+        "winner": "roast"
+      },
+      {
+        "seed": 10281,
+        "seconds": 197.66666666666666,
+        "winner": "roast"
+      },
+      {
+        "seed": 10282,
+        "seconds": 287.71666666666664,
+        "winner": "roast"
+      },
+      {
+        "seed": 10283,
+        "seconds": 391.75,
+        "winner": "roast"
+      },
+      {
+        "seed": 10284,
+        "seconds": 182.65833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10285,
+        "seconds": 152.75833333333333,
+        "winner": "roast"
+      },
+      {
+        "seed": 10286,
+        "seconds": 320.78333333333336,
+        "winner": "roast"
+      },
+      {
+        "seed": 10287,
+        "seconds": 126.675,
+        "winner": "latte"
+      },
+      {
+        "seed": 10288,
+        "seconds": 154.5,
+        "winner": "latte"
+      },
+      {
+        "seed": 10289,
+        "seconds": 195.49166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10290,
+        "seconds": 537.0916666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10291,
+        "seconds": 135.75833333333333,
+        "winner": "latte"
+      },
+      {
+        "seed": 10292,
+        "seconds": 696.95,
+        "winner": "latte"
+      },
+      {
+        "seed": 10293,
+        "seconds": 155.85833333333332,
+        "winner": "roast"
+      },
+      {
+        "seed": 10294,
+        "seconds": 891.3666666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10295,
+        "seconds": 328.8,
+        "winner": "latte"
+      },
+      {
+        "seed": 10296,
+        "seconds": 364.5416666666667,
+        "winner": "latte"
+      },
+      {
+        "seed": 10297,
+        "seconds": 347.01666666666665,
+        "winner": "latte"
+      },
+      {
+        "seed": 10298,
+        "seconds": 138.05833333333334,
+        "winner": "latte"
+      },
+      {
+        "seed": 10299,
+        "seconds": 1139.4166666666667,
+        "winner": "roast"
+      },
+      {
+        "seed": 10300,
+        "seconds": 859.3833333333333,
+        "winner": "latte"
+      }
+    ]
+  },
+  "combined": {
+    "count": 600,
+    "completed": 600,
+    "mean": 402.59318055555553,
+    "median": 310.4583333333333,
+    "p90": 823.7166666666667,
+    "p95": 1058.0083333333334,
+    "max": 2232.625,
+    "wins": {
+      "latte": 301,
+      "roast": 299
+    }
+  }
+}

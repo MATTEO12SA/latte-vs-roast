@@ -1,8 +1,8 @@
 # Règles et choix de reconstruction
 
-Version des règles : **1.0.1**. Cette version identifie le comportement de simulation utilisé par les liens de partage ; elle est indépendante de la version de l’application.
+Version des règles : **1.1.0**, application **1.3.0**. Cette version identifie le comportement de simulation utilisé par les liens de partage ; elle est indépendante de la version de l’application.
 
-Depuis 1.0.1, un camp sans aucune case est immédiatement éliminé : sa bille ne peut pas recréer de territoire après la conquête totale. Une téléportation ou un repositionnement interrompt également la collecte sur le trajet quitté. Les résultats 1.0.0 restent dans les statistiques ; leur rejeu est désactivé pour éviter une simulation différente sous le même identifiant.
+Depuis 1.0.1, un camp sans aucune case est immédiatement éliminé. Les règles 1.1.0 ajoutent la collecte au premier contact réel, préservent l’arrivée d’Infiltrateur avec Colosse, renforcent le front de contact de Colosse et donnent au Trou noir un rôle de contrôle adverse explicite. Les résultats 1.0.0 et 1.0.1 restent dans les statistiques ; leur rejeu est désactivé pour éviter une simulation différente sous le même identifiant. L’[audit des bonus](BONUS.md) détaille les raisons et les mesures.
 
 ## Ce que montre la vidéo
 
@@ -32,20 +32,20 @@ Les intitulés de onze bonus sont lisibles. Les collectes multiples de Nitro, Co
 
 Les billes n’ont pas de collision entre elles. Une conversion de case conserve toujours un unique propriétaire ; la somme des territoires reste égale au nombre de cases du plateau.
 
-La version 1.2 ajuste le rythme à la demande de l’utilisateur : vitesse initiale de 8 à 11 cases/s et intervalle des bonus de 3 à 2 secondes. Les valeurs initiales produisaient de nombreuses parties dépassant deux heures simulées. Le réglage retenu donne **8 min 21 s en moyenne sur 600 parties**, soit environ **2 min 05 s à ×4**. La [mesure des durées](DUREES.md) détaille les graines, les percentiles et les limites. Les anciens paramètres restent disponibles en Personnalisé et dans leurs liens de partage.
+La version 1.2 a ajusté le rythme : vitesse initiale de 8 à 11 cases/s et intervalle des bonus de 3 à 2 secondes. Les règles 1.1.0 conservent ces paramètres et donnent **6 min 43 s en moyenne sur 600 parties**, soit environ **1 min 41 s à ×4**. La [mesure des durées](DUREES.md) conserve les résultats historiques et détaille les nouveaux percentiles. Les anciennes valeurs restent réglables en Personnalisé, avec les règles actuelles.
 
 ## Bonus : observation et choix
 
 | Bonus français / nom de référence | Ce qui est observé | Règle retenue |
 | --- | --- | --- |
 | Fantôme d’éclipse / Eclipse Ghost | Petite bille traversant le territoire adverse en y traçant un chemin | Rayon ×0,4 et conversion au passage sans rebond pendant 6 s |
-| Trou noir / Black Hole | Vortex fixe, particules et bille retenue à proximité | Attraction dans un rayon de 3 cases pendant 6 s, capture courte et relâchement borné |
+| Trou noir / Black Hole | Vortex fixe, particules et bille retenue à proximité | Vortex placé près de l’adversaire le plus proche ; rayon 3, durée 6 s. Ennemis attirés et ralentis de 35 %, capturés 0,35 s au centre puis immunisés 1 s ; alliés épargnés |
 | Raz-de-marée / Tidal Wave | Disparition d’une grande avancée adverse | Reconquête instantanée de la moitié de départ du camp bénéficiaire |
 | Vitesse +33 % / Speed +33% | Intitulé lisible | Vitesse ×1,33 pendant 8 s ; collecte suivante renouvelle la durée |
 | Nitro / Nitro | Longue traînée lumineuse, déplacement rapide, cumul visible | +100 % de vitesse de base par charge pendant 10 s, deux charges indépendantes maximum |
 | Boule de démolition / Wrecking Ball | Intitulé et fragments d’impact | Conversion d’une zone de 3 × 3 cases autour de l’impact pendant 8 s |
-| Colosse / Colossus | Très grande bille et deux activations simultanées | Rayon ×2,5 avec une charge, ×5 avec deux, 8 s par charge |
-| Infiltrateur / Infiltrator +10 seconds | Intitulé et apparition d’une bille supplémentaire | Une bille temporaire en territoire adverse, 10 s, prolongation de 10 s aux collectes suivantes |
+| Colosse / Colossus | Très grande bille et deux activations simultanées | Rayon ×2,5 avec une charge, ×5 avec deux, 8 s par charge ; conversion d’un front élargi au contact, disque de rayon courant +0,55 case |
+| Infiltrateur / Infiltrator +10 seconds | Intitulé et apparition d’une bille supplémentaire | Une bille en territoire adverse, espace adapté à son rayon y compris Colosse, 10 s puis +10 s aux collectes suivantes |
 | Trinité / Trinity | Multiplication des billes, deux activations et environ cinq billes | Deux billes supplémentaires par collecte pendant 12 s |
 | Trou de ver / Wormhole | Intitulé ; trajet exact difficile à isoler | Téléportation vers une position alliée éloignée en conservant l’élan |
 | Tourelle / Turret | Élément circulaire fixe et intitulé | Installation de 8 s ; un projectile par seconde vers les cases adverses |
@@ -57,8 +57,10 @@ Les durées, rayons et formules ci-dessus sont des **paramètres de reconstructi
 - Chaque camp reçoit les effets temporaires sur l’ensemble de ses billes. Les projectiles de tourelle ne deviennent pas des billes bénéficiant des mêmes bonus.
 - Nitro et Colosse possèdent au plus deux charges. Les charges expirent séparément ; vitesse et rayon sont recalculés depuis les propriétés normales.
 - Le Fantôme impose son petit rayon pendant sa durée. Les charges Colosse continuent d’expirer pendant ce temps.
+- Le Fantôme traverse sans impact : Démolition ne modifie pas cette traversée, mais son compteur continue. Un contact normal combinant Colosse et Démolition bénéficie du front large et des zones 3 × 3.
 - Les bonus de renfort respectent le plafond de sept billes. Une collecte ne détruit pas une bille existante pour en créer une autre.
 - Le même objet au sol ne peut être attribué qu’à un seul camp. L’ordre de traitement est stable pour conserver le rejeu déterministe.
+- Les objets sont collectés dans l’ordre du premier contact géométrique. En cas d’égalité exacte, leur identifiant départage ; à temps égal avec une collision, la collecte est appliquée avant le contact physique. La vitesse et le rayon changent immédiatement pour le reste de l’étape.
 - Les apparitions, téléportations et changements de rayon maintiennent les billes à l’intérieur du terrain et recherchent une position exploitable.
 - La victoire est vérifiée après une étape complète de simulation. La partie terminée ne continue pas à modifier le terrain.
 - Une pause arrête le temps de simulation, donc les durées des effets et des renforts.

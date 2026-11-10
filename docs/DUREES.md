@@ -1,4 +1,27 @@
-# Durée des parties — mesure du 10 novembre 2026
+# Durée des parties — version 1.3.0
+
+Mesure du 10 novembre 2026, règles **1.1.0** après audit des bonus. Les paramètres restent 18 × 24, 11 cases/s, un bonus toutes les 2 s, victoire à 90 % et onze bonus actifs.
+
+| Mesure sur 600 parties | Temps simulé | Observation à ×4, sans pause |
+| --- | --- | --- |
+| Moyenne | **6 min 43 s** | **1 min 41 s** |
+| Médiane | 5 min 10 s | 1 min 18 s |
+| 90e percentile | 13 min 44 s | 3 min 26 s |
+| 95e percentile | 17 min 38 s | 4 min 25 s |
+| Maximum observé | 37 min 13 s | 9 min 18 s |
+
+Les **600 parties se sont terminées**, sans censure au plafond de mesure de 7 200 s : 301 victoires Crème / Latte, 299 Café / Roast. Deux séries distinctes ont été mesurées, graines 1 à 300 (moyenne 6 min 56 s) et 10 001 à 10 300 (6 min 29 s). Les [données par graine](durations-1.3.0.json) permettent la reproduction. Il n’y a pas de durée maximale imposée dans le jeu ; une graine non mesurée peut durer davantage.
+
+```sh
+npm run simulate -- --count 300 --first-seed 1 --output .local/durations-current-a.json
+npm run simulate -- --count 300 --first-seed 10001 --output .local/durations-current-b.json
+```
+
+Les secondes sont celles de la simulation. ×4 divise le temps d’observation par quatre sans changer le résultat. Pause et onglet masqué arrêtent ce temps. Les paramètres personnalisés peuvent produire d’autres durées.
+
+## Historique : mesure de la version 1.2.0
+
+Les chiffres et commandes ci-dessous concernent le code du tag **v1.2.0**, règles 1.0.1. Ils sont conservés comme référence historique ; ils ne décrivent pas la version actuelle. Pour les reproduire, utiliser une copie du dépôt à ce tag.
 
 Objectif demandé : environ dix minutes de **simulation** en moyenne, soit deux minutes trente d’observation à ×4, sans pause. La durée affichée par le jeu et enregistrée dans les statistiques reste celle de la simulation.
 
@@ -37,4 +60,4 @@ npm run simulate -- --count 300 --first-seed 10001 --output .local/durations-val
 npm run simulate -- --count 300 --config '{"baseSpeed":8,"spawnSeconds":3}' --output .local/durations-baseline.json
 ```
 
-Les nouveaux paramètres par défaut sont enregistrés dans chaque lien partagé et chaque résultat. Les anciens liens valides sous les règles 1.0.1 gardent leurs paramètres explicites et restent reproductibles ; le réglage du rythme ne nécessite donc pas une nouvelle version du moteur. Les anciennes règles 1.0.0 restent incompatibles avec les corrections de physique de 1.0.1.
+Dans la version 1.2.0, le réglage des paramètres seul n’avait pas changé le moteur 1.0.1 : les liens 1.0.1 gardaient donc leur résultat. La version actuelle modifie les effets et les contacts sous les règles 1.1.0 ; les anciens liens sont désormais signalés incompatibles et leurs résultats restent conservés dans l’historique.
