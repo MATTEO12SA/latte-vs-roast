@@ -1,6 +1,6 @@
 # Validation de la livraison 1.3.0
 
-Vérifications du 10 novembre 2026, règles **1.1.0** : TypeScript, ESLint, compilation, **77 tests Vitest** et **54 scénarios Playwright** sur Chromium, Firefox et WebKit.
+Vérifications locales du 10 novembre 2026, règles **1.1.0** : TypeScript, ESLint, compilation, **77 tests Vitest** et **54 scénarios Playwright** sur Chromium, Firefox et WebKit.
 
 - Contrats des onze bonus, collecte dans l’ordre des contacts, effet immédiat sur le mouvement, Infiltrateur agrandi en territoire adverse, contact large Colosse, protection des alliés contre Trou noir, capture de 0,35 s, libération, immunité et huit tirs de Tourelle.
 - **121 paires de bonus** exercées sur les deux camps avec contrôle des positions, vitesses, comptes de cases, plafonds et expirations ; robustesse sur 200 graines supplémentaires.
@@ -12,6 +12,8 @@ Vérifications du 10 novembre 2026, règles **1.1.0** : TypeScript, ESLint, comp
 - Préférences EN/FR et son conservées, statistiques et historique fonctionnels. Les résultats 1.0.0/1.0.1 restent consultables ; les anciens liens expliquent l’incompatibilité.
 
 Le téléphone Android signalé par l’utilisateur n’est pas pilotable depuis cet environnement. Le démarrage tactile et les appels audio sont validés dans les navigateurs disponibles ; l’audibilité sur ce téléphone précis reste à confirmer après mise à jour. La disposition à 320 et 390 pixels reste sans débordement.
+
+Sur GitHub Actions sous Linux, le workflow prépare une sortie virtuelle PulseAudio avant les tests navigateur. Les tests conservent le véritable `AudioContext` et vérifient son démarrage ainsi que la création des notes ; cette sortie remplace uniquement le haut-parleur absent du serveur. Elle ne valide pas l’audibilité sur un téléphone physique. Le premier passage sans cette préparation a échoué sur le démarrage audio de Firefox (53 autres scénarios réussis).
 
 ## Validation historique de la version 1.2.0
 

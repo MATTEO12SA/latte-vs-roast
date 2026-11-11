@@ -29,6 +29,13 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npx playwright install --with-deps chromium firefox webkit
+      - name: Préparer la sortie audio des navigateurs
+        run: |
+          sudo apt-get install --no-install-recommends -y pulseaudio pulseaudio-utils
+          pulseaudio --start --exit-idle-time=-1
+          pactl load-module module-null-sink sink_name=ci_audio
+          pactl set-default-sink ci_audio
+          pactl info
       - run: npm run test:e2e
       - run: npm run build
       - name: Conserver le diagnostic navigateur en cas d’échec
